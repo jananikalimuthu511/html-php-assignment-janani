@@ -231,18 +231,52 @@ Output:
 Enter student's marks (in percentage): 82
 Grade: First Class
 
-13. Consider the following snippet, comment your views.
-$sub = substr(12345, 2, 2);
-echo “sub is $sub”;
+15. Create a PHP program to compute the sum of the digits of a number.
 
 Code:
 <?php
-$sub = substr("12345", 2, 2);
-echo "sub is $sub";
+echo "Enter a number: ";
+$number = trim(fgets(STDIN));
+
+$sum = 0;
+
+while ($number > 0) {
+    $digit = $number % 10;     
+    $sum += $digit;            
+    $number = (int)($number / 10);  
+}
+
+echo "Sum of digits: $sum\n";
 ?>
 
 Output:
-sub is 34
+Enter a number: 54
+Sum of digits: 9
+
+16. Write a PHP function that takes two numbers as input and returns the sum of those
+numbers. Display the result on the webpage, when a button is clicked.
+
+Code:
+<?php
+function addNumbers($a, $b) {
+    return $a + $b;
+}
+
+echo "Enter first number: ";
+$num1 = trim(fgets(STDIN));
+
+echo "Enter second number: ";
+$num2 = trim(fgets(STDIN));
+
+$sum = addNumbers($num1, $num2);
+echo "The sum is: $sum\n";
+?>
+
+Output:
+Enter first number: 10
+Enter second number: 30
+The sum is: 40
+
 
 
 
