@@ -231,6 +231,19 @@ Output:
 Enter student's marks (in percentage): 82
 Grade: First Class
 
+13. Consider the following snippet, comment your views.
+$sub = substr(12345, 2, 2);
+echo “sub is $sub”;
+
+Code:
+<?php
+$sub = substr("12345", 2, 2);
+echo "sub is $sub";
+?>
+
+Output:
+sub is 34
+
 
 
 
