@@ -388,6 +388,206 @@ findHighLow($myNumbers);
 Output:
 Highest number is: 89<br>Lowest number is: 5
 
+21. Construct a PHP function that checks if a given year is a leap year and returns true or
+false accordingly.
+
+Code:
+<?php
+function isLeapYear($year) {
+    if (($year % 4 == 0 && $year % 100 != 0) || ($year % 400 == 0)) {
+        return true;
+    } else {
+        return false;
+    }
+}
+
+$year = 2024;
+
+if (isLeapYear($year)) {
+    echo "$year is a leap year.";
+} else {
+    echo "$year is not a leap year.";
+}
+?>
+
+Output:
+2024 is a leap year.
+
+22. Create a PHP script that counts the number of occurrences of a specific word in a given
+string.
+
+Code:
+<?php
+$text = "PHP is easy. PHP is powerful. I love PHP!";
+$word = "PHP";
+
+$count = substr_count($text, $word);
+
+echo "The word '$word' appears $count times in the string.";
+?>
+
+Output:
+The word 'PHP' appears 3 times in the string.
+
+23. Prioritize the use of GET and POST arguments in PHP with a real time example.
+
+Code:
+<?php
+$_GET['color'] = "Blue";
+$_POST['name'] = "JANANI";
+
+echo "GET: Your favorite color is " . $_GET['color'] . "\n";
+echo "POST: Hello, " . $_POST['name'] . "!";
+?>
+
+Output:
+GET: Your favorite color is Blue
+POST: Hello, JANANI!
+
+24. Write a PHP script to manipulate the strings with all the string functions.
+
+Code:
+<?php
+$str = "  Hello World! Welcome to PHP.  ";
+
+// Remove extra spaces
+$trimmed = trim($str);
+
+// Convert to lowercase and uppercase
+$lower = strtolower($trimmed);
+$upper = strtoupper($trimmed);
+
+// String length
+$length = strlen($trimmed);
+
+// Word count
+$wordCount = str_word_count($trimmed);
+
+// Replace a word
+$replaced = str_replace("World", "Friend", $trimmed);
+
+// Reverse the string
+$reversed = strrev($trimmed);
+
+// Find position of a word
+$pos = strpos($trimmed, "PHP");
+
+// Substring
+$sub = substr($trimmed, 6, 5);
+
+// Display results neatly
+echo "Original: '$str'\n";
+echo "Trimmed: '$trimmed'\n";
+echo "Lowercase: $lower\n";
+echo "Uppercase: $upper\n";
+echo "Length: $length\n";
+echo "Word count: $wordCount\n";
+echo "Replace: $replaced\n";
+echo "Reversed: $reversed\n";
+echo "Position of 'PHP': $pos\n";
+echo "Substring: $sub\n";
+?>
+
+Output:
+Original: '  Hello World! Welcome to PHP.  '
+Trimmed: 'Hello World! Welcome to PHP.'
+Lowercase: hello world! welcome to php.
+Uppercase: HELLO WORLD! WELCOME TO PHP.
+Length: 28
+Word count: 5
+Replace: Hello Friend! Welcome to PHP.
+Reversed: .PHP ot emocleW !dlroW olleH
+Position of 'PHP': 24
+Substring: World
+
+25. Construct a PHP script to replace the first ‘the’ of the following string with ‘best’. Data:
+“The Thing will come to you soon”
+
+Code:
+<?php
+$text = "The Thing will come to you soon";
+
+$result = preg_replace('/The/', 'Best', $text, 1);
+
+echo $result;
+?>
+
+Output:
+Best Thing will come to you soon
+
+
+27. Articulate the mathematical operators with suitable examples in PHP.
+
+Code:
+<?php
+$a = 12;
+$b = 5;
+
+echo "a = $a, b = $b\n";
+echo "Addition (+): " . ($a + $b) . "\n";
+echo "Subtraction (-): " . ($a - $b) . "\n";
+echo "Multiplication (*): " . ($a * $b) . "\n";
+echo "Division (/): " . ($a / $b) . "\n";
+echo "Modulus (%): " . ($a % $b) . "\n";
+echo "Exponentiation (*): " . ($a * $b) . "\n";
+?>
+
+Output:
+a = 12, b = 5
+Addition (+): 17
+Subtraction (-): 7
+Multiplication (*): 60
+Division (/): 2.4
+Modulus (%): 2
+Exponentiation (*): 60
+
+28. Consider three variables $a, $b, $c, apply var_dump() function to evaluate if the values
+are equal or not.
+
+Code:
+<?php
+$a = 10;
+$b = "10";
+$c = 15;
+
+var_dump($a == $b); // true (values are equal, types not checked)
+var_dump($a === $b); // false (values are same, but types are different)
+var_dump($a == $c); // false
+var_dump($b == $c); // false
+?>
+
+Output:
+bool(true)
+bool(false)
+bool(false)
+bool(false)
+
+30. Develop a PHP script that generates a random password consisting of a combination of
+letters, numbers, and special characters.
+
+Code:
+<?php
+function generatePassword($length = 10) {
+    $chars = 'abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789!@#$%^&*()';
+    $password = '';
+
+    for ($i = 0; $i < $length; $i++) {
+        $randomIndex = rand(0, strlen($chars) - 1);
+        $password .= $chars[$randomIndex];
+    }
+
+    return $password;
+}
+
+echo "Random Password: " . generatePassword();
+?>
+
+Output:
+Random Password: $XS#V91!DP
+
+
+
+
 
 
 
