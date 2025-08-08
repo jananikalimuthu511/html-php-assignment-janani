@@ -277,6 +277,121 @@ Enter first number: 10
 Enter second number: 30
 The sum is: 40
 
+17. Examine the various control structures in php and construct a bank transaction problem
+with customers deposit and withdrawal of amount.
+
+Code:
+<?php
+$balance = 1000; 
+
+function showMenu() {
+    echo "\nChoose an option:\n";
+    echo "1. Deposit\n";
+    echo "2. Withdraw\n";
+    echo "3. Check Balance\n";
+    echo "4. Exit\n";
+    echo "Enter your choice: ";
+}
+
+while (true) {
+    showMenu();
+    $choice = trim(fgets(STDIN));
+
+    switch ($choice) {
+        case 1:
+            echo "Enter deposit amount: ";
+            $deposit = trim(fgets(STDIN));
+            if ($deposit > 0) {
+                $balance += $deposit;
+                echo "Amount deposited successfully.\n";
+            } else {
+                echo "Invalid amount!\n";
+            }
+            break;
+
+        case 2:
+            echo "Enter withdrawal amount: ";
+            $withdraw = trim(fgets(STDIN));
+            if ($withdraw > 0 && $withdraw <= $balance) {
+                $balance -= $withdraw;
+                echo "Amount withdrawn successfully.\n";
+            } else {
+                echo "Invalid or insufficient balance!\n";
+            }
+            break;
+
+        case 3:
+            echo "Your current balance is: Rs. $balance\n";
+            break;
+
+        case 4:
+            echo "Thank you for banking with us!\n";
+            exit;
+
+        default:
+            echo "Invalid choice! Please enter 1 to 4.\n";
+    }
+}
+?>
+
+Output:
+Choose an option:
+1. Deposit
+2. Withdraw
+3. Check Balance
+4. Exit
+Enter your choice: 3
+Your current balance is: Rs. 1000
+
+Choose an option:
+1. Deposit
+2. Withdraw
+3. Check Balance
+4. Exit
+Enter your choice: 4
+Thank you for banking with us!
+
+18. IsSet() function in PHP with example.
+
+Code:
+<?php
+$name = "Janani";
+
+if (isset($name)) {
+    echo "The variable \$name is set and its value is: " . $name;
+} else {
+    echo "The variable \$name is not set.";
+}
+?>
+
+Output:
+The variable $name is set and its value is: Janani
+
+19. Examine a PHP function that accepts an array of numbers and returns the highest and
+lowest values in that array. Display the results on the webpage.
+
+Code:
+<?php
+function findHighLow($numbers) {
+    $highest = max($numbers);
+    $lowest = min($numbers);
+
+    echo "Highest number is: " . $highest . "<br>";
+    echo "Lowest number is: " . $lowest;
+}
+
+$myNumbers = [12, 45, 7, 89, 23, 5, 67];
+
+findHighLow($myNumbers);
+?>
+
+Output:
+Highest number is: 89<br>Lowest number is: 5
+
+
+
+
+
 
 
 
