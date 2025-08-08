@@ -54,10 +54,9 @@ $tax = $subtotal * 0.10;
 $total = $subtotal + $tax;
 
 Output:
-    Purchase Summary
-Subtotal: ₹450.00
-Tax (10%): ₹45.00
-Total Cost: ₹495.00
+Subtotal: Rs. 450
+Tax (10%): Rs. 45
+Total: Rs. 495
 
 7.Create a form which takes the name of the user as input and prints a greeting in the format
 given below and if the user submits the form with the name field blank, it prints an
@@ -200,6 +199,39 @@ switch ($day_number) {
 Output: 
 Enter a number (1 to 7) to get the day of the week: 1
 Monday
+
+12. Write a program to check student grade based on marks:
+Conditions:
+If marks are 75% or more, the grade will be First Class.
+If marks between 60% to 74%, grade will be second class.
+If marks between 40% to 59%, grade will be third class.
+If marks are less than 40%, students will be Fail.
+
+Code:
+<?php
+echo "Enter student's marks (in percentage): ";
+$marks = trim(fgets(STDIN));
+
+if (!is_numeric($marks) || $marks < 0 || $marks > 100) {
+    echo "Invalid input. Please enter a number between 0 and 100.\n";
+} else {
+    if ($marks >= 75) {
+        echo "Grade: First Class\n";
+    } elseif ($marks >= 60) {
+        echo "Grade: Second Class\n";
+    } elseif ($marks >= 40) {
+        echo "Grade: Third Class\n";
+    } else {
+        echo "Grade: Fail\n";
+    }
+}
+?>
+
+Output:
+Enter student's marks (in percentage): 82
+Grade: First Class
+
+
 
 
 
