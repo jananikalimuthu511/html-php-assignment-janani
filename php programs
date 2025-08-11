@@ -95,11 +95,11 @@ function deal() {
     
     $costA = 25;
     $sizeA = 11;
-    $valueA = $costA / $sizeA;  // Cost per unit
+    $valueA = $costA / $sizeA;  
 
     $costB = 23;
     $sizeB = 9;
-    $valueB = $costB / $sizeB;  // Cost per unit
+    $valueB = $costB / $sizeB;  
 
     if ($valueA < $valueB) {
         echo "Choose Drink A to save money.\n";
