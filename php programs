@@ -450,32 +450,23 @@ Code:
 <?php
 $str = "  Hello World! Welcome to PHP.  ";
 
-// Remove extra spaces
 $trimmed = trim($str);
 
-// Convert to lowercase and uppercase
 $lower = strtolower($trimmed);
 $upper = strtoupper($trimmed);
 
-// String length
 $length = strlen($trimmed);
 
-// Word count
 $wordCount = str_word_count($trimmed);
 
-// Replace a word
 $replaced = str_replace("World", "Friend", $trimmed);
 
-// Reverse the string
 $reversed = strrev($trimmed);
 
-// Find position of a word
 $pos = strpos($trimmed, "PHP");
 
-// Substring
 $sub = substr($trimmed, 6, 5);
 
-// Display results neatly
 echo "Original: '$str'\n";
 echo "Trimmed: '$trimmed'\n";
 echo "Lowercase: $lower\n";
