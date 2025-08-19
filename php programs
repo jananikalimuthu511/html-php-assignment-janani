@@ -579,6 +579,799 @@ Random Password: $XS#V91!DP
 
 
 
+ASSIGNMENT-2
+
+31) Remove the first element from an array in PHP using array functions.
+<?php
+$fruits = array("Apple", "Banana", "Mango", "Orange");
+array_shift($fruits);
+print_r($fruits);
+?>
+OUTPUT:
+Array
+(
+    [0] => Banana
+    [1] => Mango
+    [2] => Orange
+)
+32) Infer the result of the following PHP code?
+A)<?php
+$mail = "admin@example.com";
+$mail = str_replace("a","@",$mail);
+echo "Contact me at $mail.";
+?>
+OUTPUT:
+Contact me at @dmin@ex@mple.com.
+B)<?php
+$names = array("alex", "jean", "emily", "jane");
+$name = preg_grep("/^e/", $names);
+print_r($name);
+?>
+
+OUTPUT:
+Array
+(
+    [2] => emily
+)
+
+33) Construct a PHP code to create a multidimensional array representing a matrix and display the value in
+the second row and third column.
+<?php
+$matrix = array(
+    array(1, 2, 3),   
+    array(4, 5, 6),     
+    array(7, 8, 9)    
+);
+$value = $matrix[1][2];  
+echo "The value in the second row and third column is: $value";
+?>
+OUTPUT:
+The value in the second row and third column is: 6
+34) Replace all occurrences of a specific word with another word in a string using regular expressions in PHP.
+<?php
+$text = "PHP is fun. Learning PHP can be very interesting. I love PHP!";
+$search = "/\bPHP\b/";
+$replace = "Java";
+$result = preg_replace($search, $replace, $text);
+echo "Original Text: $text<br>";
+echo "Modified Text: $result";
+?>
+OUTPUT:
+Original Text: PHP is fun. Learning PHP can be very interesting. I love PHP!<br>Modified Text: Java is fun. Learning Java can be very interesting. I love Java!
+
+35) Write a PHP script using an array that checks if a string contains another string and displays the result.
+<?php
+$mainString = "PHP is a powerful scripting language for web development.";
+$searchWords = array("PHP", "Java", "web", "python");
+foreach ($searchWords as $word) {
+    if (strpos($mainString, $word) !== false) {
+        echo "The string contains '$word'.<br>";
+    } else {
+        echo "The string does NOT contain '$word'.<br>";
+    }
+}
+?>
+OUTPUT:
+The string contains 'PHP'.<br>The string does NOT contain 'Java'.<br>The string contains 'web'.<br>The string does NOT contain 'python'.<br>
+36) Create an array of fruits in PHP and display the third element.
+<?php
+$Vegetable= array("Apple", "Banana", "Carrot", "Orange", "Grapes");
+echo "The odd one is : " . $Vegetable[2];
+?>
+OUTPUT:
+The odd one is : Carrot
+37) Explain Push and Pop in array functions.
+PUSH:
+<?php
+$fruits = array("Apple", "Banana");
+array_push($fruits, "Mango", "Orange");
+
+print_r($fruits);
+?>
+
+OUTPUT:
+Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Mango
+    [3] => Orange
+)
+POP:
+<?php
+$fruits = array("Apple", "Banana", "Mango");
+$lastFruit = array_pop($fruits);
+
+echo "Removed: $lastFruit<br>";
+print_r($fruits);
+?>
+OUTPUT:
+Removed: Mango<br>Array
+(
+    [0] => Apple
+    [1] => Banana
+)
+38)Interpret the steps to iterate over a PHP array using a while loop with an example
+<?php
+$fruits = array("Apple", "Banana", "Mango", "Orange");
+$i = 0;
+$length = count($fruits);
+while ($i < $length) {
+    echo "Fruit at index $i: " . $fruits[$i] . "<br>";
+    $i++;
+}
+?>
+OUTPUT:
+Fruit at index 0: Apple<br>Fruit at index 1: Banana<br>Fruit at index 2: Mango<br>Fruit at index 3: Orange<br>
+
+39) A school wants to automate the calculation of student grades. Design a system that allows teachers to input
+student scores, calculates their grades, and generates a summary report. How would you utilize arrays and
+array functions to store and process the student data effectively?
+<?php
+$students = array(
+    "Alice" => 85,
+    "Bob" => 72,
+    "Charlie" => 90,
+    "David" => 65,
+    "Eva" => 50
+);
+function getGrade($score) {
+    if ($score >= 90) return "A";
+    elseif ($score >= 80) return "B";
+    elseif ($score >= 70) return "C";
+    elseif ($score >= 60) return "D";
+    else return "F";
+}
+echo "<h3>Student Grade Report</h3>";
+foreach ($students as $name => $score) {
+    $grade = getGrade($score);
+    echo "$name - Score: $score - Grade: $grade <br>";
+}
+$totalStudents = count($students);
+$totalScore = array_sum($students);
+$average = $totalScore / $totalStudents;
+$highest = max($students);
+$lowest = min($students);
+$topper = array_keys($students, $highest);
+
+echo "<h3>Summary</h3>";
+echo "Total Students: $totalStudents <br>";
+echo "Average Score: $average <br>";
+echo "Highest Score: $highest (Topper: " . implode(", ", $topper) . ")<br>";
+echo "Lowest Score: $lowest <br>";
+?>
+OUTPUT:
+Student Grade Report
+Alice - Score: 85 - Grade: B 
+Bob - Score: 72 - Grade: C 
+Charlie - Score: 90 - Grade: A 
+David - Score: 65 - Grade: D 
+Eva - Score: 50 - Grade: F 
+
+Summary
+Total Students: 5 
+Average Score: 72.4 
+Highest Score: 90 (Topper: Charlie)
+Lowest Score: 50 
+
+
+40) Write a PHP script to remove all characters from a string except a-z A-Z 0-9 or " " using an array.
+<?php
+$text = "Hello@123!! Welcome_to PHP#World 2025.";
+$chars = str_split($text);
+
+$filtered = array_filter($chars, function($ch) {
+    return preg_match('/[a-zA-Z0-9 ]/', $ch);
+});
+$cleanString = implode("", $filtered);
+echo "Original String: $text <br>";
+echo "Cleaned String: $cleanString";
+?>
+OUTPUT:
+Original String: Hello@123!! Welcome_to PHP#World 2025.
+Cleaned String: Hello123 Welcometo PHPWorld 2025
+
+41) How can you use regular expressions to extract all email addresses from a given string using an array in
+PHP?
+<?php
+$text = "Contact us at support@example.com, sales@shop.org or admin123@test.co.in for details.";
+$pattern = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,}/";
+preg_match_all($pattern, $text, $matches);
+$emails = $matches[0];
+echo "Extracted Email Addresses:<br>";
+foreach ($emails as $email) {
+    echo $email . "<br>";
+}
+?>
+OUTPUT:
+Extracted Email Addresses:
+support@example.com
+sales@shop.org
+admin123@test.co.in
+
+42) Write a PHP script to find the maximum and minimum marks from the following set of arrays
+
+$marks1 = array(360,310,310,330,313,375,456,111,256);
+$marks2 = array(350,340,356,330,321);
+$marks3 = array(630,340,570,635,434,255,298);<?php
+
+$marks1 = array(360,310,310,330,313,375,456,111,256);
+$marks2 = array(350,340,356,330,321);
+$marks3 = array(630,340,570,635,434,255,298);
+$allMarks = array_merge($marks1, $marks2, $marks3);
+$maxMark = max($allMarks);
+$minMark = min($allMarks);
+echo "Maximum Mark: $maxMark <br>";
+echo "Minimum Mark: $minMark <br>";
+?>
+OUTPUT:
+Maximum Mark: 635 <br>Minimum Mark: 111 <br>
+43) Develop a regular expression pattern that validates a password based on the following criteria: at least 8
+characters long, contains at least one uppercase letter, one lowercase letter, one digit, and one special
+character.
+<?php
+$passwords = ["Test@123", "weakpass", "NoSpecial123", "StrongPass1$", "Short1!"];
+$pattern = "/^(?=.*[A-Z])(?=.*[a-z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/";
+foreach ($passwords as $pwd) {
+    if (preg_match($pattern, $pwd)) {
+        echo "Password '$pwd' is VALID <br>";
+    } else {
+        echo "Password '$pwd' is INVALID <br>";
+    }
+}     
+?>
+OUTPUT:
+Password 'Test@123' is VALID <br>Password 'weakpass' is INVALID <br>Password 'NoSpecial123' is INVALID <br>Password 'StrongPass1$' is VALID <br>Password 'Short1!' is INVALID <br>
+
+44) Develop a music playlist management system for a streaming service. The system should allow users to
+create, modify, and organize playlists. How would you use arrays and array functions to store and
+manipulate the song data and playlist information efficiently?
+<?php
+$songs = array("Shape of You", "Blinding Lights", "Believer", "Levitating");
+$playlist = array();
+array_push($playlist, $songs[0], $songs[2], $songs[3]);
+echo "<h3>My Playlist</h3>";
+foreach ($playlist as $song) {
+    echo $song . "<br>";
+}
+$key = array_search("Believer", $playlist);
+if ($key !== false) {
+    unset($playlist[$key]);
+}
+echo "<h3>Summary</h3>";
+echo "Total Songs: " . count($playlist);
+?>
+OUTPUT:
+My Playlist
+Shape of You
+Believer
+Levitating
+
+Summary
+Total Songs: 2
+
+45) Write a PHP function to compare two multidimensional arrays and return the difference.
+<?php
+$array1 = array(
+    array("id" => 1, "name" => "Alice"),
+    array("id" => 2, "name" => "Bob"),
+    array("id" => 3, "name" => "Charlie")
+);
+
+$array2 = array(
+    array("id" => 1, "name" => "Alice"),
+    array("id" => 2, "name" => "Bob"),
+    array("id" => 3, "name" => "David")
+);
+$diff = array_udiff($array1, $array2, function($a, $b) {
+    return ($a == $b) ? 0 : 1;
+});
+echo "<pre>";
+print_r($diff);
+echo "</pre>";
+?>
+OUTPUT:
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [name] => Alice
+        )
+
+    [2] => Array
+        (
+            [id] => 3
+            [name] => Charlie
+        )
+)
+46) Write a PHP program to find the index of a specific value in an array.
+<?php
+$fruits = array("apple", "banana", "cherry", "mango", "orange");
+$search = "mango";
+$index = array_search($search, $fruits);
+if ($index !== false) {
+    echo "The value '$search' is found at index: $index";
+} else {
+    echo "The value '$search' is not found in the array.";
+}
+?>
+OUTPUT:
+The value 'mango' is found at index: 3
+
+47) Delete an element from the below array. And print the array elements in PHP. $x = array (1, 2, 3, 4, 5);
+<?php
+$x = [1, 2, 3, 4, 5];
+unset($x[2]);
+$x = array_values($x);
+echo implode(' ', $x), PHP_EOL;
+
+OUTPUT:
+1 2 4 5 
+
+48. Record number handling in PHP with suitable examples.
+
+<?php
+$students = ["Alex", "Brian", "Catherine", "David", "Emma"];
+foreach ($students as $recordNo => $name) {
+    echo "Record No: " . ($recordNo + 1) . " - Name: $name <br>";
+}
+?>
+OUTPUT:
+Record No: 1 - Name: Alex 
+Record No: 2 - Name: Brian 
+Record No: 3 - Name: Catherine 
+Record No: 4 - Name: David 
+Record No: 5 - Name: Emma 
+49) A sports team wants to evaluate player performance based on various statistical metrics. Design a system
+that utilizes numerical types and mathematical operators to calculate performance indices, averages, and
+rankings. How would you handle large datasets and perform complex calculations efficiently?
+<?php
+// Player stats dataset (could come from DB)
+$players = [
+    ["name" => "Alice", "points" => 20, "assists" => 5, "rebounds" => 8],
+    ["name" => "Bob",   "points" => 15, "assists" => 7, "rebounds" => 10],
+    ["name" => "Charlie","points" => 25, "assists" => 4, "rebounds" => 6],
+];
+foreach ($players as &$player) {
+    $player['index'] = ($player['points'] * 0.5) +
+                       ($player['assists'] * 0.3) +
+                       ($player['rebounds'] * 0.2);
+}
+usort($players, function($a, $b) {
+    return $b['index'] <=> $a['index'];
+});
+$totalIndex = array_sum(array_column($players, 'index'));
+$avgIndex   = $totalIndex / count($players);
+echo "Average Performance Index: " . number_format($avgIndex, 2) . "\n\n";
+foreach ($players as $rank => $player) {
+    echo "Rank " . ($rank + 1) . ": {$player['name']} (Index: " . number_format($player['index'], 2) . ")\n";
+}
+?>
+Output:
+Average Performance Index: 13.20 Rank 1: Charlie (Index: 14.90) Rank 2: Alice (Index: 13.10) Rank 3: Bob (Index: 11.60) 
+
+50) Construct a PHP script to lower-case and upper-case, all elements in an array.
+<?php
+$words = ["Apple", "BaNaNa", "Cherry", "MANGO"];
+$lowercase = array_map('strtolower', $words);
+$uppercase = array_map('strtoupper', $words);
+echo "Original Array: " . implode(", ", $words) . "<br>";
+echo "Lower-case Array: " . implode(", ", $lowercase) . "<br>";
+echo "Upper-case Array: " . implode(", ", $uppercase);
+?>
+OUTPUT:
+Original Array: Apple, BaNaNa, Cherry, MANGO
+Lower-case Array: apple, banana, cherry, mango
+Upper-case Array: APPLE, BANANA, CHERRY, MANGO
+
+51) Differentiate between array_shift() and array_unshift() in PHP.
+<?php
+$fruits = ["apple", "banana", "cherry"];
+$first = array_shift($fruits);
+echo "Removed Element: $first\n";
+print_r($fruits);
+?>
+<br>
+<?php
+$fruits = ["banana", "cherry"];
+$count = array_unshift($fruits, "apple", "mango");
+
+echo "New Array Size: $count\n";
+print_r($fruits);
+?>
+OUTPUT:
+Removed Element: apple Array ([0] => banana[1] => cherry ) 
+ New Array Size: 4 Array ([0] => apple[1] => mango[2] => banana[3] => cherry ) 
+
+52) Compare stack and queue operations using PHP with appropriate examples.
+<?php
+// Stack example
+$stack = [];
+array_push($stack, "A");
+array_push($stack, "B");
+array_push($stack, "C");
+
+echo "Stack after pushes: ";
+print_r($stack);
+$last = array_pop($stack);
+echo "Popped: $last\n";
+echo "Stack after pop: ";
+print_r($stack);
+?>
+<br>
+<?php
+$queue = [];
+array_push($queue, "A");
+array_push($queue, "B");
+array_push($queue, "C");
+echo "Queue after enqueues: ";
+print_r($queue);
+$first = array_shift($queue);
+echo "Dequeued: $first\n";
+
+echo "Queue after dequeue: ";
+print_r($queue);
+?>
+OUTPUT:
+Stack after pushes: Array ([0] => A[1] => B[2] => C ) Popped: C Stack after pop: Array ([0] => A[1] => B ) 
+ Queue after enqueues: Array ([0] => A[1] => B[2] => C ) Dequeued: A Queue after dequeue: Array ([0] => B[1] => C ) 
+
+53) Demonstrate the difference in behaviour of array_pop() and array_shift() using a numeric array.
+<?php
+$numbers = [10, 20, 30, 40, 50];
+
+echo "Original Array: ";
+print_r($numbers);
+$last = array_pop($numbers);
+echo "\nAfter array_pop():\n";
+echo "Removed Element: $last\n";
+print_r($numbers);
+$numbers = [10, 20, 30, 40, 50];
+$first = array_shift($numbers);
+echo "\nAfter array_shift():\n";
+echo "Removed Element: $first\n";
+print_r($numbers);
+?>
+OUTPUT:
+Original Array: Array ([0] => 10[1] => 20[2] => 30[3] => 40[4] => 50 ) 
+After array_pop(): Removed Element: 50 Array ([0] => 10[1] => 20[2] => 30[3] => 40 ) 
+After array_shift(): Removed Element: 10 Array ([0] => 20[1] => 30[2] => 40[3] => 50 ) 
+
+54) Design a PHP program that simulates a ticket booking queue using built-in array functions.
+<?php
+$queue = [];
+array_push($queue, "Alice");
+array_push($queue, "Bob");
+array_push($queue, "Charlie");
+array_push($queue, "David");
+
+echo "Initial Queue:\n";
+print_r($queue);
+$served = array_shift($queue);
+echo "\nCustomer served: $served\n";
+
+echo "Queue after serving one customer:\n";
+print_r($queue);
+array_push($queue, "Eve");
+echo "\nAfter new customer joins:\n";
+print_r($queue);
+
+$served1 = array_shift($queue);
+$served2 = array_shift($queue);
+echo "\nCustomers served: $served1, $served2\n";
+
+echo "Final Queue:\n";
+print_r($queue);
+?>
+OUTPUT:
+Initial Queue: Array ([0] => Alice[1] => Bob[2] => Charlie[3] => David ) 
+Customer served: Alice Queue after serving one customer: Array ([0] => Bob[1] => Charlie[2] => David ) 
+After new customer joins: Array ([0] => Bob[1] => Charlie[2] => David[3] => Eve ) 
+Customers served: Bob, Charlie Final Queue: Array ([0] => David[1] => Eve ) 
+
+55) Develop a PHP script that uses stack functions to reverse a string.
+<?php
+$string = "HELLO";
+$chars = str_split($string);
+$stack = [];
+foreach ($chars as $ch) {
+    array_push($stack, $ch);
+}
+$reversed = "";
+while (!empty($stack)) {
+    $reversed .= array_pop($stack);
+}
+echo "Original String: $string\n";
+echo "Reversed String: $reversed\n";
+?>
+OUTPUT:
+Original String: HELLO Reversed String: OLLEH 
+
+56) What are all the Functions available to sort a PHP array?
+<?php
+$fruits = ["banana", "apple", "Mango", "cherry", "Apple"];
+sort($fruits);
+print_r($fruits);
+asort($fruits);
+print_r($fruits);
+$assoc = ["d"=>3, "a"=>1, "c"=>2];
+ksort($assoc);
+print_r($assoc);
+$files = ["file1.txt", "file10.txt", "file2.txt"];
+natsort($files);
+print_r($files);
+?>
+Output:
+Array ([0] => Apple[1] => Mango[2] => apple[3] => banana[4] => cherry ) 
+Array ([0] => Apple[1] => Mango[2] => apple[3] => banana[4] => cherry ) 
+Array ([a] => 1[c] => 2[d] => 3 ) 
+Array ([0] => file1.txt[2] => file2.txt[1] => file10.txt ) 
+
+57) Outline the Regular Expression with appropriate examples. 
+<?php
+$text = "Alice and Bob went to New York";
+preg_match_all("/\b[A-Z][a-zA-Z]*\b/", $text, $matches);
+print_r($matches[0]);
+?>
+OUTPUT:
+Array ([0] => Alice[1] => Bob[2] => New[3] => York ) 
+
+58) Construct a PHP program to extract the mail addresses in the given
+string using regular expression.
+<?php
+$text = "You can contact us at support@example.com, sales@myshop.org or admin123@test.co.in.";
+$pattern = "/[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-z]{2,6}/";
+preg_match_all($pattern, $text, $matches);
+
+echo "Extracted Email Addresses:\n";
+print_r($matches[0]);
+?>
+OUTPUT:
+Extracted Email Addresses: Array ([0] => support@example.com[1] => sales@myshop.org[2] => admin123@test.co.in ) 
+
+59) Create a function that takes an array of numbers as input and returns the average value. 
+<?php
+function calculateAverage($numbers) {
+    if (count($numbers) === 0) {
+        return 0; // Avoid division by zero
+    }
+    $sum = array_sum($numbers);  
+    $count = count($numbers);    
+    return $sum / $count;        
+}
+$values = [10, 20, 30, 40, 50];
+echo "The average is: " . calculateAverage($values);
+?>
+OUTPUT:
+The average is: 30
+
+60) Write a PHP function to search a specified value within the values of an associative array.
+<?php
+function searchValueInAssocArray($array, $searchValue) {
+    $result = array_keys($array, $searchValue, true); 
+    if (!empty($result)) {
+        return $result; 
+    } else {
+        return null; 
+    }
+}
+$students = [
+    "101" => "Alice",
+    "102" => "Bob",
+    "103" => "Charlie",
+    "104" => "Bob"
+];
+$search = "Bob";
+$foundKeys = searchValueInAssocArray($students, $search);
+if ($foundKeys !== null) {
+    echo "Value '$search' found at keys: " . implode(", ", $foundKeys);
+} else {
+    echo "Value '$search' not found in the array.";
+}
+?>
+OUTPUT:
+Value 'Bob' found at keys: 102, 104
+61) Recall the steps to delete an element from an array?
+<?php
+$x = [1, 2, 3, 4, 5];
+unset($x[2]);  
+print_r($x);
+?>
+OUTPUT:
+Array ([0] => 1[1] => 2[3] => 4[4] => 5 ) 
+
+62) Demonstrate a PHP script which rounds the following values with 1 decimal digit precision.
+Sample values : 1.65 1.65 -1.54
+<?php
+$values = [1.65, 1.65, -1.54];
+foreach ($values as $num) {
+    echo "Original: $num → Rounded: " . round($num, 1) . "<br>";
+}
+?>
+OUTPUT:
+Original: 1.65 → Rounded: 1.7
+Original: 1.65 → Rounded: 1.7
+Original: -1.54 → Rounded: -1.5
+
+63) Discover a function that takes an array of numbers as input and returns the sum of all the even numbers in
+the array.
+<?php
+function sumEvenNumbers($arr) {
+    $sum = 0;
+    foreach ($arr as $num) {
+        if ($num % 2 == 0) {   
+            $sum += $num;
+        }
+    }
+    return $sum;
+}
+$numbers = [1, 2, 3, 4, 5, 6, 7, 8];
+echo "Sum of even numbers: " . sumEvenNumbers($numbers);
+?>
+output:
+Sum of even numbers: 20
+
+64) A retail company wants to forecast future sales based on historical data. Develop a system that utilizes
+numerical types, mathematical operators to analyze sales trends, calculate growth rates, and generate
+sales forecasts using arrays in php.
+<?php
+$sales = [1000, 1200, 1350, 1500, 1600, 1750, 1900];
+$growthRates = [];
+for ($i = 1; $i < count($sales); $i++) {
+    $growth = (($sales[$i] - $sales[$i - 1]) / $sales[$i - 1]) * 100; // %
+    $growthRates[] = $growth;
+}
+$averageGrowthRate = array_sum($growthRates) / count($growthRates);
+$forecast = [];
+$lastSale = end($sales);  // get last known sales
+for ($i = 1; $i <= 3; $i++) {
+    $lastSale = $lastSale * (1 + $averageGrowthRate / 100);
+    $forecast[] = round($lastSale, 2);
+}
+echo "<h2>Sales Forecast System</h2>";
+echo "<b>Historical Sales Data:</b> " . implode(", ", $sales) . "<br><br>";
+echo "<b>Monthly Growth Rates (%):</b> " . implode(", ", array_map(fn($v) => round($v, 2), $growthRates)) . "<br>";
+echo "<b>Average Growth Rate:</b> " . round($averageGrowthRate, 2) . "%<br><br>";
+
+echo "<b>Forecasted Sales (Next 3 Months):</b> " . implode(", ", $forecast) . "<br>";
+?>
+OUTPUT:
+Sales Forecast System
+Historical Sales Data: 1000, 1200, 1350, 1500, 1600, 1750, 1900
+Monthly Growth Rates (%): 20, 12.5, 11.11, 6.67, 9.38, 8.57
+Average Growth Rate: 11.37%
+Forecasted Sales (Next 3 Months): 2116.04, 2356.65, 2624.62
+65) Demonstrate PHP script that checks if a string contains another string and displays the result.
+<?php
+$mainString = "Welcome to PHP programming!";
+$search = "PHP";
+if (strpos($mainString, $search) !== false) {
+    echo "The string contains '$search'.<br>";
+} else {
+    echo "The string does not contain '$search'.<br>";
+}
+if (function_exists('str_contains')) {
+    if (str_contains($mainString, $search)) {
+        echo "(Using str_contains) The string contains '$search'.";
+    } else {
+        echo "(Using str_contains) The string does not contain '$search'.";
+    }
+}
+?>
+OUTPUT:
+The string contains 'PHP'.
+(Using str_contains) The string contains 'PHP'.
+
+66) Difference between count() and sizeof() function in PHP.
+<?php
+$fruits = ["apple", "banana", "cherry"];
+echo "Using count(): " . count($fruits) . "<br>";
+echo "Using sizeof(): " . sizeof($fruits) . "<br>";
+?>
+OUTPUT:
+Using count(): 3
+Using sizeof(): 3
+
+67) Construct a program that tokenizes a sentence into words using regular expressions. Then, count the
+number of occurrences of each word and display the results.
+<?php
+$sentence = "PHP is great, and PHP is powerful. PHP is easy to learn!";
+$words = preg_split("/\W+/", strtolower($sentence), -1, PREG_SPLIT_NO_EMPTY);
+$wordCount = array_count_values($words);
+echo "<h3>Word Frequency Count</h3>";
+foreach ($wordCount as $word => $count) {
+    echo "$word : $count <br>";
+}
+?>
+OUTPUT:
+Word Frequency Count
+php : 3 
+is : 3 
+great : 1 
+and : 1 
+powerful : 1 
+easy : 1 
+to : 1 
+learn : 1 
+
+68) Construct a PHP script that catches a division by zero error using try-catch.
+<?php
+try {
+    $numerator = 10;
+    $denominator = 0;
+     if ($denominator == 0) {
+        throw new DivisionByZeroError("Cannot divide by zero!");
+    }
+    $result = $numerator / $denominator;
+    echo "Result: $result";
+    
+} catch (DivisionByZeroError $e) {
+    echo "Error: " . $e->getMessage();
+}
+?>
+OUTPUT:
+Error: Cannot divide by zero!
+
+69) Build a PHP function to change the following array's all values to upper or lower case.
+
+Sample arrays :
+$Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+Expected Output :
+Values are in lower case.
+Array ( [A] => blue [B] => green [c] => red )
+Values are in upper case.
+Array ( [A] => BLUE [B] => GREEN [c] => RED )
+<?php
+$Color = array('A' => 'Blue', 'B' => 'Green', 'c' => 'Red');
+function arrayToLower($arr) {
+    return array_map('strtolower', $arr);
+}
+function arrayToUpper($arr) {
+    return array_map('strtoupper', $arr);
+}
+echo "Values are in lower case.<br>";
+print_r(arrayToLower($Color));
+echo "<br><br>Values are in upper case.<br>";
+print_r(arrayToUpper($Color));
+?>
+
+OUTPUT:
+Values are in lower case.
+Array ([A] => blue[B] => green[c] => red ) 
+
+Values are in upper case.
+Array ([A] => BLUE[B] => GREEN[c] => RED ) 
+70) Create a PHP program to take input, a sequence of numbers from the user and store it in a list or array.
+<html>
+<head>
+    <title>Number Sequence Input</title>
+</head>
+<body>
+    <h2>Enter a sequence of numbers separated by commas</h2>
+    <form method="post">
+        <input type="text" name="numbers" placeholder="e.g. 1,2,3,4,5" required>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+<?php
+    if (isset($_POST['submit'])) {
+        $input = $_POST['numbers'];
+        $numberArray = array_map('trim', explode(',', $input));
+        $numberArray = array_map('intval', $numberArray);
+        echo "<h3>Your number sequence as an array:</h3>";
+        echo "<pre>";
+        print_r($numberArray);
+        echo "</pre>";
+    }
+    ?>
+</body>
+</html>
+
+
+
+
+
+
 
 
 
