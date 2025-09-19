@@ -1,1 +1,829 @@
+PROGRAM 3 control structures and loops
 
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Inventory Management</title>
+</head>
+<body>
+
+<h1>Simple Inventory Management</h1>
+
+<?php
+// Initial stock values
+$stock = array(
+    "Veg Biryani" => 10,
+    "Chicken Biryani" => 8,
+    "Ice Cream" => 15
+);
+
+// Manual operations
+$action = "add";  // can be "add" or "remove"
+$item = "Chicken Biryani";
+$quantity = 3;
+
+// Update stock using control structures
+if (array_key_exists($item, $stock)) {
+    if ($action == "add") {
+        $stock[$item] += $quantity;
+        echo "<p>Added $quantity $item(s) to stock.</p>";
+    } elseif ($action == "remove") {
+        if ($stock[$item] >= $quantity) {
+            $stock[$item] -= $quantity;
+            echo "<p>Removed $quantity $item(s) from stock.</p>";
+        } else {
+            echo "<p>Not enough $item in stock to remove.</p>";
+        }
+    } else {
+        echo "<p>Invalid action.</p>";
+    }
+} else {
+    echo "<p>Item not found in inventory.</p>";
+}
+
+// Display updated stock
+echo "<h2>Updated Inventory</h2>";
+foreach ($stock as $key => $value) {
+    echo "<p>$key : $value items</p>";
+}
+?>
+
+</body>
+</html>
+    
+
+
+PROGRAM 4 string functions
+<!DOCTYPE html>
+<html>
+<head>
+    <title>PHP String Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            margin: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px gray;
+            width: 500px;
+            margin: auto;
+        }
+        p {
+            font-size: 18px;
+        }
+        span {
+            color: darkred;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>PHP String Functions Demo</h1>
+<div class="box">
+<?php
+// Input string
+$text = "Welcome to Hotel SBD";
+
+// String functions
+echo "<p>Original Text: <span>$text</span></p>";
+echo "<p>Uppercase: <span>" . strtoupper($text) . "</span></p>";
+echo "<p>Lowercase: <span>" . strtolower($text) . "</span></p>";
+echo "<p>Length of Text: <span>" . strlen($text) . "</span></p>";
+echo "<p>Reversed Text: <span>" . strrev($text) . "</span></p>";
+echo "<p>Replace 'Hotel' with 'Restaurant': <span>" . str_replace("Hotel", "Restaurant", $text) . "</span></p>";
+echo "<p>Substring (first 7 chars): <span>" . substr($text, 0, 7) . "</span></p>";
+?>
+</div>
+
+</body>
+</html>
+
+Program 5 arrays and functions
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Student Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: darkgreen;
+        }
+        .card {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px gray;
+        }
+        p {
+            font-size: 18px;
+        }
+        span {
+            font-weight: bold;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Grade Calculator</h1>
+<div class="card">
+<?php
+// Array of student marks
+$marks = array(
+    "Maths" => 85,
+    "Science" => 78,
+    "English" => 92,
+    "Computer" => 88,
+    "History" => 74
+);
+
+// Function to calculate total
+function calculateTotal($marks) {
+    return array_sum($marks);
+}
+
+// Function to calculate average
+function calculateAverage($marks) {
+    return array_sum($marks) / count($marks);
+}
+
+// Function to assign grade
+function assignGrade($average) {
+    if ($average >= 90) return "A+";
+    elseif ($average >= 80) return "A";
+    elseif ($average >= 70) return "B";
+    elseif ($average >= 60) return "C";
+    else return "Fail";
+}
+
+// Calculate values
+$total = calculateTotal($marks);
+$average = calculateAverage($marks);
+$grade = assignGrade($average);
+
+// Display results
+echo "<p><span>Marks Obtained:</span></p>";
+foreach ($marks as $subject => $mark) {
+    echo "<p>$subject : $mark</p>";
+}
+
+echo "<hr>";
+echo "<p>Total Marks: <span>$total</span></p>";
+echo "<p>Average Marks: <span>$average</span></p>";
+echo "<p>Grade: <span>$grade</span></p>";
+?>
+</div>
+
+</body>
+</html>
+
+ 
+Program 6 form handling
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Registration Form</title>
+    <style>
+        body { font-family: Arial; background: #f9f9f9; }
+        h1 { text-align: center; color: darkblue; }
+        .form-box {
+            width: 300px; margin: auto; background: white; padding: 15px;
+            border-radius: 8px; box-shadow: 1px 1px 6px gray;
+        }
+        input { width: 95%; padding: 8px; margin: 5px 0; }
+        input[type=submit] {
+            background: darkblue; color: white; border: none; cursor: pointer;
+        }
+        .error { color: red; }
+    </style>
+</head>
+<body>
+
+<h1>Registration Form</h1>
+<div class="form-box">
+<?php
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $name = $_POST["name"];
+    $email = $_POST["email"];
+    $password = $_POST["password"];
+
+    if ($name == "" || $email == "" || $password == "") {
+        echo "<p class='error'>All fields are required!</p>";
+    } else {
+        echo "<p><b>Registration Successful!</b></p>";
+        echo "Name: $name <br>Email: $email";
+    }
+}
+?>
+
+<form method="post">
+    Name: <br>
+    <input type="text" name="name"><br>
+    Email: <br>
+    <input type="text" name="email"><br>
+    Password: <br>
+    <input type="password" name="password"><br><br>
+    <input type="submit" value="Register">
+</form>
+</div>
+
+</body>
+</html>
+
+Program 7  advanced arrays
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Employee Salary Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 30px; }
+        h1 { text-align: center; color: darkgreen; }
+        table {
+            width: 60%; margin: auto; border-collapse: collapse; background: white;
+            box-shadow: 2px 2px 6px gray; border-radius: 8px; overflow: hidden;
+        }
+        th, td { padding: 12px; text-align: center; border: 1px solid #ccc; }
+        th { background: darkgreen; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+    </style>
+</head>
+<body>
+
+<h1>Employee Salary Details</h1>
+
+<?php
+// Employee data (ID, Name, Basic Salary, Bonus)
+$employees = [
+    ["id" => 101, "name" => "Rahul", "basic" => 30000, "bonus" => 5000],
+    ["id" => 102, "name" => "Priya", "basic" => 40000, "bonus" => 7000],
+    ["id" => 103, "name" => "Arjun", "basic" => 25000, "bonus" => 3000],
+];
+
+// Function to calculate total salary
+function calculateTotalSalary($basic, $bonus) {
+    return $basic + $bonus;
+}
+
+// Display employee salary details
+echo "<table>";
+echo "<tr><th>ID</th><th>Name</th><th>Basic Salary</th><th>Bonus</th><th>Total Salary</th></tr>";
+
+foreach ($employees as $emp) {
+    $total = calculateTotalSalary($emp["basic"], $emp["bonus"]);
+    echo "<tr>";
+    echo "<td>".$emp["id"]."</td>";
+    echo "<td>".$emp["name"]."</td>";
+    echo "<td>₹".$emp["basic"]."</td>";
+    echo "<td>₹".$emp["bonus"]."</td>";
+    echo "<td><b>₹".$total."</b></td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+?>
+
+</body>
+</html>
+
+Program 8  Exception handling
+
+<!DOCTYPE html>
+<html>
+<head>
+<title>Bank Transactions</title>
+<style>
+body{font-family:Arial;background:lightyellow;text-align:center;}
+.box{background:#fff;padding:20px;margin:50px auto;width:350px;border-radius:10px;box-shadow:2px 2px 6px gray;}
+.success{color:green;font-weight:bold;}
+.error{color:red;font-weight:bold;}
+</style>
+</head>
+<body>
+<div class="box">
+<h2>Bank Transactions</h2>
+<form method="post">
+    Acc No: <input type="text" name="accNo" required><br>
+    Name: <input type="text" name="holderName" required><br>
+    Initial Balance: <input type="number" name="balance" required><br>
+    Type: <select name="type"><option value="deposit">Deposit</option><option value="withdraw">Withdraw</option></select><br>
+    Amount: <input type="number" name="amount" required><br><br>
+    <button type="submit" name="submit">Submit</button>
+</form>
+
+<?php
+class BankAccount {
+    public $accNo,$name,$balance;
+    function __construct($a,$n,$b){$this->accNo=$a;$this->name=$n;$this->balance=$b;}
+    function deposit($amt){ if($amt>0){$this->balance+=$amt;return "Deposited ₹$amt";} throw new Exception("Invalid Deposit!"); }
+    function withdraw($amt){ if($amt>0 && $amt<=$this->balance){$this->balance-=$amt;return "Withdrawn ₹$amt";} throw new Exception("Insufficient Balance!"); }
+}
+if(isset($_POST['submit'])){
+    $acc=new BankAccount($_POST['accNo'],$_POST['holderName'],$_POST['balance']);
+    try{
+        echo "<p class='success'>".($$_POST['type']=="deposit" ? $acc->deposit($_POST['amount']) : $acc->withdraw($_POST['amount']))."</p>";
+        echo "<p>Final Balance: ₹{$acc->balance}</p>";
+    }catch(Exception $e){ echo "<p class='error'>".$e->getMessage()."</p>"; }
+}
+?>
+</div>
+</body>
+</html>
+
+
+Program 9 server side validation 
+<?php
+session_start();
+// Database connection
+$servername = "localhost:3306";
+$dbusername = "root";   // Database username
+$dbpassword = "1234";   // Database password
+$dbname     = "testdb1"; // Database name
+$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$error = "";
+$success = "";
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    // Server-side validation
+    if (empty($username) || empty($password)) {
+        $error = "All fields are required!";
+    } else {
+        // Check credentials in database
+        $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $_SESSION['username'] = $username;
+            // Redirect after successful login
+            header("Location: ?welcome=1");
+            exit();
+        } else {
+            $error = "Invalid Username or Password!";
+        }
+    }
+}
+// Handle logout
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+?>
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Login System</title>
+    <style>
+        body { font-family: Arial; background: #f2f2f2; }
+        .box { width: 300px; margin: 100px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px #aaa; }
+        h2 { text-align: center; }
+        input { width: 100%; padding: 10px; margin: 8px 0; }
+        button { width: 100%; padding: 10px; background: #5cb85c; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        .error { color: red; text-align: center; }
+        .success { color: green; text-align: center; }
+    </style>
+</head>
+<body>
+<div class="box">
+<?php if (isset($_SESSION['username']) && isset($_GET['welcome'])): ?>
+    <h2>Welcome, <?php echo $_SESSION['username']; ?> 🎉</h2>
+    <p>You have successfully logged in.</p>
+    <a href="?logout=1"><button>Logout</button></a>
+<?php else: ?>
+    <h2>Login</h2>
+    <form method="POST" action="">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+    <div class="error"><?php echo $error; ?></div>
+<?php endif; ?>
+</div>
+</body>
+</html>
+(Mysql)
+-- Create Database
+CREATE DATABASE testdb;
+
+-- Use Database
+USE testdb;
+-- Create Table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+-- Insert Example Data
+INSERT INTO users (name, email, password)
+VALUES ('John Doe', 'john@example.com', '12345');
+
+
+Program 10 shopping cart using session and cookies
+
+<?php
+session_start(); // start session
+
+// Simple products
+$products = [
+    1 => ["name"=>"Laptop","price"=>50000],
+    2 => ["name"=>"Phone","price"=>20000],
+    3 => ["name"=>"Headphones","price"=>2000]
+];
+
+// Initialize cart from session or cookie
+if(!isset($_SESSION['cart']) && isset($_COOKIE['cart'])){
+    $_SESSION['cart'] = unserialize($_COOKIE['cart']);
+}
+
+// Add item
+if(isset($_GET['add'])){
+    $id = $_GET['add'];
+    if(isset($_SESSION['cart'][$id])){
+        $_SESSION['cart'][$id]['qty'] += 1;
+    } else {
+        $_SESSION['cart'][$id] = [
+            "name"=>$products[$id]['name'],
+            "price"=>$products[$id]['price'],
+            "qty"=>1
+        ];
+    }
+    setcookie("cart", serialize($_SESSION['cart']), time()+3600); // save in cookie 1 hr
+}
+
+// Remove item
+if(isset($_GET['remove'])){
+    $id = $_GET['remove'];
+    unset($_SESSION['cart'][$id]);
+    setcookie("cart", serialize($_SESSION['cart']), time()+3600);
+}
+
+// Clear cart
+if(isset($_GET['clear'])){
+    unset($_SESSION['cart']);
+    setcookie("cart","",time()-3600);
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Shopping Cart</title>
+    <style>
+        body{font-family:Arial; background:#f9f9f9; text-align:center;}
+        .container{width:400px; margin:30px auto; padding:15px; background:white; border-radius:10px; box-shadow:1px 1px 5px gray;}
+        table{width:100%; border-collapse:collapse; margin-bottom:10px;}
+        th, td{padding:8px; border:1px solid #ccc;}
+        th{background:#333; color:white;}
+        a{color:blue; text-decoration:none;}
+        a:hover{color:red;}
+        button{padding:5px 10px; margin-top:5px; cursor:pointer;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Products</h2>
+    <table>
+        <tr><th>Name</th><th>Price</th><th>Action</th></tr>
+        <?php foreach($products as $id=>$p): ?>
+        <tr>
+            <td><?php echo $p['name']; ?></td>
+            <td>₹<?php echo $p['price']; ?></td>
+            <td><a href="?add=<?php echo $id; ?>">Add</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <h2>Cart</h2>
+    <?php if(!empty($_SESSION['cart'])): ?>
+    <table>
+        <tr><th>Item</th><th>Price</th><th>Qty</th><th>Total</th><th>Action</th></tr>
+        <?php
+        $grandTotal=0;
+        foreach($_SESSION['cart'] as $id=>$item):
+            $total = $item['price'] * $item['qty'];
+            $grandTotal += $total;
+        ?>
+        <tr>
+            <td><?php echo $item['name']; ?></td>
+            <td>₹<?php echo $item['price']; ?></td>
+            <td><?php echo $item['qty']; ?></td>
+            <td>₹<?php echo $total; ?></td>
+            <td><a href="?remove=<?php echo $id; ?>">Remove</a></td>
+        </tr>
+        <?php endforeach; ?>
+        <tr><th colspan="3">Grand Total</th><th>₹<?php echo $grandTotal; ?></th><th></th></tr>
+    </table>
+    <a href="?clear=1"><button>Clear Cart</button></a>
+    <?php else: ?>
+        <p>Your cart is empty.</p>
+    <?php endif; ?>
+</div>
+</body>
+</html>
+
+
+Program 11 image uploading
+
+<?php
+$uploadDir = "uploads/";
+
+// Create the folder automatically if it doesn't exist
+if(!is_dir($uploadDir)){
+    mkdir($uploadDir, 0777, true); // full permissions
+}
+
+// Handle image upload
+if(isset($_POST['upload'])){
+    $file = $_FILES['image'];
+    $filename = $file['name'];
+    $tmpName = $file['tmp_name'];
+    $fileType = strtolower(pathinfo($filename, PATHINFO_EXTENSION));
+    $allowed = ["jpg","jpeg","png","gif"];
+
+    if(in_array($fileType, $allowed)){
+        move_uploaded_file($tmpName, $uploadDir.$filename);
+        $message = "Image uploaded successfully!";
+    } else {
+        $message = "Only JPG, JPEG, PNG, GIF files allowed!";
+    }
+}
+
+// Handle image delete
+if(isset($_GET['delete'])){
+    $fileToDelete = $uploadDir.$_GET['delete'];
+    if(file_exists($fileToDelete)){
+        unlink($fileToDelete);
+        $message = "Image deleted successfully!";
+    }
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Upload</title>
+    <style>
+        body{font-family:Arial; text-align:center; background:#f9f9f9;}
+        .container{margin:30px auto; width:500px; padding:15px; background:white; border-radius:10px; box-shadow:1px 1px 5px gray;}
+        input, button{padding:8px; margin:10px 0;}
+        img{width:100px; margin:5px; border:1px solid #ccc; border-radius:5px;}
+        a{color:red; text-decoration:none;}
+        a:hover{font-weight:bold;}
+        .message{color:green;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Image Upload Application</h2>
+
+    <?php if(isset($message)) echo "<p class='message'>$message</p>"; ?>
+
+    <form method="post" enctype="multipart/form-data">
+        <input type="file" name="image" required>
+        <br>
+        <button type="submit" name="upload">Upload</button>
+    </form>
+
+    <h3>Uploaded Images</h3>
+    <?php
+    $images = glob($uploadDir."*.*");
+    if($images){
+        foreach($images as $img){
+            $imgName = basename($img);
+            echo "<div style='display:inline-block; text-align:center;'>";
+            echo "<img src='$img' alt='$imgName'><br>";
+            echo "<a href='?delete=$imgName'>Delete</a>";
+            echo "</div>";
+        }
+    } else {
+        echo "<p>No images uploaded yet.</p>";
+    }
+    ?>
+</div>
+</body>
+</html>
+
+
+Program 12 student database using mysql and php
+<?php
+// Database connection
+$host = "localhost";
+$user = "root";
+$pass = ""; // put your MySQL root password if set
+$dbname = "library_db";
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Add a book
+if (isset($_POST['add_book'])) {
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $sql = "INSERT INTO books (title, author) VALUES ('$title', '$author')";
+    mysqli_query($conn, $sql);
+    echo "<p style='color:green;'>Book added successfully!</p>";
+}
+
+// Issue a book
+if (isset($_POST['issue_book'])) {
+    $user_id = $_POST['user_id'];
+    $book_id = $_POST['book_id'];
+
+    $check = mysqli_query($conn, "SELECT available FROM books WHERE id=$book_id");
+    $row = mysqli_fetch_assoc($check);
+
+    if ($row && $row['available']) {
+        mysqli_query($conn, "INSERT INTO issued_books (user_id, book_id, issue_date) 
+                             VALUES ('$user_id', '$book_id', NOW())");
+        mysqli_query($conn, "UPDATE books SET available=0 WHERE id=$book_id");
+        echo "<p style='color:green;'>Book issued successfully!</p>";
+    } else {
+        echo "<p style='color:red;'>Book is not available!</p>";
+    }
+}
+
+// Return a book
+if (isset($_POST['return_book'])) {
+    $book_id = $_POST['book_id'];
+    mysqli_query($conn, "UPDATE issued_books SET return_date=NOW() 
+                         WHERE book_id=$book_id AND return_date IS NULL");
+    mysqli_query($conn, "UPDATE books SET available=1 WHERE id=$book_id");
+    echo "<p style='color:blue;'>Book returned successfully!</p>";
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management</title>
+</head>
+<body>
+    <h1>📚 Library Management System</h1>
+
+    <!-- Add Book -->
+    <h3>Add a New Book</h3>
+    <form method="POST">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <button type="submit" name="add_book">Add Book</button>
+    </form>
+    <hr>
+
+    <!-- Issue Book -->
+    <h3>Issue a Book</h3>
+    <form method="POST">
+        <input type="number" name="user_id" placeholder="User ID" required>
+        <input type="number" name="book_id" placeholder="Book ID" required>
+        <button type="submit" name="issue_book">Issue Book</button>
+    </form>
+    <hr>
+
+    <!-- Return Book -->
+    <h3>Return a Book</h3>
+    <form method="POST">
+        <input type="number" name="book_id" placeholder="Book ID" required>
+        <button type="submit" name="return_book">Return Book</button>
+    </form>
+    <hr>
+
+    <!-- View Books -->
+    <h3>All Books</h3>
+    <?php
+    $result = mysqli_query($conn, "SELECT * FROM books");
+    echo "<table border='1' cellpadding='5'>
+          <tr><th>ID</th><th>Title</th><th>Author</th><th>Status</th></tr>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>
+            <td>".$row['id']."</td>
+            <td>".$row['title']."</td>
+            <td>".$row['author']."</td>
+            <td>".($row['available'] ? "Available" : "Issued")."</td>
+        </tr>";
+    }
+    echo "</table>";
+    ?>
+</body>
+</html>
+
+
+Program 13 library management mysql functions
+<?php
+// Database Connection
+$host = "localhost:3307";
+$user = "root";   // your MySQL username
+$pass = "";       // your MySQL password
+$db   = "library_db";
+
+$conn = mysqli_connect($host, $user, $pass, $db);
+
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Create Table if not exists
+$createTable = "CREATE TABLE IF NOT EXISTS books (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    title VARCHAR(100) NOT NULL,
+    author VARCHAR(100) NOT NULL,
+    year INT NOT NULL
+)";
+mysqli_query($conn, $createTable);
+
+// Insert Book
+if (isset($_POST['add'])) {
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $year = $_POST['year'];
+
+    $sql = "INSERT INTO books (title, author, year) VALUES ('$title', '$author', '$year')";
+    if (mysqli_query($conn, $sql)) {
+        echo "<p style='color:green'>Book Added Successfully!</p>";
+    } else {
+        echo "Error: " . mysqli_error($conn);
+    }
+}
+
+// Delete Book
+if (isset($_GET['delete'])) {
+    $id = $_GET['delete'];
+    $delSql = "DELETE FROM books WHERE id=$id";
+    mysqli_query($conn, $delSql);
+    echo "<p style='color:red'>Book Deleted!</p>";
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management</title>
+    <style>
+        body { font-family: Arial; margin: 40px; background: #f4f4f9; }
+        h2 { color: #333; }
+        form { margin-bottom: 20px; }
+        input, button { padding: 8px; margin: 5px; }
+        table { border-collapse: collapse; width: 70%; margin-top: 20px; }
+        th, td { border: 1px solid #ccc; padding: 8px; text-align: center; }
+        th { background: #eee; }
+        a { text-decoration: none; color: red; }
+    </style>
+</head>
+<body>
+
+<h2>Library Management System</h2>
+
+<form method="POST">
+    <input type="text" name="title" placeholder="Book Title" required>
+    <input type="text" name="author" placeholder="Author" required>
+    <input type="number" name="year" placeholder="Year" required>
+    <button type="submit" name="add">Add Book</button>
+</form>
+
+<h3>Book List</h3>
+<table>
+    <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Author</th>
+        <th>Year</th>
+        <th>Action</th>
+    </tr>
+    <?php
+    $result = mysqli_query($conn, "SELECT * FROM books");
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>
+            <td>".$row['id']."</td>
+            <td>".$row['title']."</td>
+            <td>".$row['author']."</td>
+            <td>".$row['year']."</td>
+            <td><a href='?delete=".$row['id']."' onclick=\"return confirm('Delete this book?');\">Delete</a></td>
+        </tr>";
+    }
+    ?>
+</table>
+
+</body>
+</html>
