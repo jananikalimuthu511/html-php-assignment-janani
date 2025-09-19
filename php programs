@@ -1366,15 +1366,123 @@ Array ([A] => BLUE[B] => GREEN[c] => RED )
     ?>
 </body>
 </html>
+71. Tell the different file handling modes available in PHP.
+<?php
+/*
+File handling modes in PHP:
 
+1. r  -> Open file for reading only. Starts at beginning of file.
+2. r+ -> Open for reading and writing. Starts at beginning of file.
+3. w  -> Open for writing only. Erases file content or creates new file.
+4. w+ -> Open for reading and writing. Erases file content or creates new file.
+5. a  -> Open for writing only. Places file pointer at end of file. Creates file if not exists.
+6. a+ -> Open for reading and writing. Places file pointer at end of file.
+7. x  -> Create new file for writing. Returns FALSE if file already exists.
+8. x+ -> Create new file for reading and writing. Returns FALSE if file already exists.
+*/
+echo "Different file handling modes explained in comments.";
+?>
 
+72. Write the PHP program to implement the following session functions. (i) session_register() (ii) session_unset() (iii) session_destroy()
+<?php
+session_start(); // start session
 
+// Registering session variable
+$_SESSION["username"] = "Admin";
 
+// Display session value
+echo "Session Registered: " . $_SESSION["username"] . "<br>";
 
+// Unset session variable
+session_unset();
+echo "All session variables are unset.<br>";
 
+// Destroy session
+session_destroy();
+echo "Session destroyed.";
+?>
 
+73. Develop a PHP program to display an error message when a file other than jpg or png is uploaded.
+<?php
+if(isset($_FILES['file'])){
+    $file_name = $_FILES['file']['name'];
+    $file_ext = strtolower(pathinfo($file_name, PATHINFO_EXTENSION));
 
+    if($file_ext == "jpg" || $file_ext == "png"){
+        echo "File uploaded successfully.";
+    } else {
+        echo "Error: Only JPG or PNG files are allowed!";
+    }
+}
+?>
 
+<!-- Simple upload form -->
+<form method="post" enctype="multipart/form-data">
+    Select file: <input type="file" name="file">
+    <input type="submit" value="Upload">
+</form>
+
+74. Outline the file reading and writing functions of PHP with suitable examples.
+<?php
+// Writing to a file
+$file = fopen("demo.txt", "w");
+fwrite($file, "Hello, this is a test file.\n");
+fclose($file);
+
+// Reading from a file
+$file = fopen("demo.txt", "r");
+$content = fread($file, filesize("demo.txt"));
+fclose($file);
+
+echo "File Content: <br>" . nl2br($content);
+?>
+
+75. Build a PHP function that takes the filename and a new line of content as input. Append the new line of content as a new line at the end of the file.
+<?php
+function appendToFile($filename, $newline){
+    $file = fopen($filename, "a"); // open in append mode
+    fwrite($file, $newline . "\n");
+    fclose($file);
+    echo "Line appended successfully!";
+}
+
+// Example call
+appendToFile("demo.txt", "This is a new appended line.");
+?>
+
+76. Write a simple 'birthday countdown' script, the script will count the number of days between current day and birthday.
+<?php
+$today = strtotime(date("Y-m-d"));
+$birthday = strtotime("2025-12-25"); // change date to your birthday
+
+$diff = $birthday - $today;
+$days = ceil($diff / (60 * 60 * 24));
+
+if($days > 0){
+    echo "Your birthday is in $days days!";
+} elseif($days == 0){
+    echo "Happy Birthday!";
+} else {
+    echo "Your birthday has passed this year.";
+}
+?>
+
+77. Classify the various network functions which provide network information or functions.
+<?php
+/*
+Common Network Functions in PHP:
+
+1. gethostbyname()  -> Returns the IPv4 address of a host.
+2. gethostbyaddr()  -> Returns the host name of an IP address.
+3. gethostbynamel() -> Returns a list of IPv4 addresses for a host.
+4. ip2long()        -> Converts IP address to long integer.
+5. long2ip()        -> Converts long integer back to IP address.
+6. dns_check_record()-> Checks DNS record for a given host.
+*/
+echo "Network functions explained in comments.";
+?>
+
+78.Elucidate the steps to read and delete existing cookies in the browser.
 
 
 
