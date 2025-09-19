@@ -1483,10 +1483,505 @@ echo "Network functions explained in comments.";
 ?>
 
 78.Elucidate the steps to read and delete existing cookies in the browser.
+<?php
+// Reading cookie
+if(isset($_COOKIE['user'])){
+    echo "Cookie Value: " . $_COOKIE['user'] . "<br>";
+} else {
+    echo "No cookie found.<br>";
+}
+
+// Deleting cookie (set expiry time in past)
+setcookie("user", "", time()-3600, "/");
+echo "Cookie deleted.";
+?>
+
+79. Create a PHP program to append two files in another file.
+<?php
+$file1 = "file1.txt";
+$file2 = "file2.txt";
+$file3 = "merged.txt";
+
+$content1 = file_get_contents($file1);
+$content2 = file_get_contents($file2);
+
+file_put_contents($file3, $content1 . "\n" . $content2);
+
+echo "Files appended successfully into merged.txt";
+?>
+
+80. Build a test cookie with the setcookie( ) function using PHP.
+<?php
+// Create a cookie
+setcookie("testCookie", "HelloCookie", time() + 3600, "/");
+
+// Read cookie
+if(isset($_COOKIE['testCookie'])){
+    echo "Cookie Value: " . $_COOKIE['testCookie'];
+} else {
+    echo "Cookie not set yet.";
+}
+?>
+
+81. Create Admin Login, Logout form using session variables in PHP.
+<?php
+session_start();
+
+if(isset($_POST['login'])){
+    $username = $_POST['username'];
+    $password = $_POST['password'];
+
+    if($username == "admin" && $password == "1234"){
+        $_SESSION['admin'] = $username;
+        echo "Login successful. <a href='?logout=true'>Logout</a>";
+    } else {
+        echo "Invalid credentials!";
+    }
+}
+
+if(isset($_GET['logout'])){
+    session_destroy();
+    echo "Logged out successfully.";
+}
+?>
+
+<form method="post">
+    Username: <input type="text" name="username"><br><br>
+    Password: <input type="password" name="password"><br><br>
+    <input type="submit" name="login" value="Login">
+</form>
+
+82. Implement the setcookie( ) function with various arguments using the PHP program.
+<?php
+// setcookie(name, value, expire, path, domain, secure, httponly)
+
+// 1. Simple cookie
+setcookie("user", "Admin", time() + 3600);
+
+// 2. Cookie with path
+setcookie("pathCookie", "PathTest", time() + 3600, "/");
+
+// 3. Secure cookie (works only with HTTPS)
+setcookie("secureCookie", "SecureValue", time() + 3600, "/", "", true);
+
+// Display message
+echo "Different cookies have been set!";
+?>
+
+83. Develop a PHP script to accept email addresses and validate it. Display the domain name of the email and result of validation.
+<?php
+if(isset($_POST['email'])){
+    $email = $_POST['email'];
+    if(filter_var($email, FILTER_VALIDATE_EMAIL)){
+        $domain = substr(strrchr($email, "@"), 1);
+        echo "Valid Email!<br>";
+        echo "Domain: " . $domain;
+    } else {
+        echo "Invalid Email!";
+    }
+}
+?>
+
+<form method="post">
+    Enter Email: <input type="text" name="email">
+    <input type="submit" value="Check">
+</form>
+
+84. Implement a PHP program that creates sessions, sets values in sessions, and removes data from the sessions.
+<?php
+session_start();
+
+// Create session
+$_SESSION['name'] = "John";
+$_SESSION['role'] = "Admin";
+
+// Display session values
+echo "Name: " . $_SESSION['name'] . "<br>";
+echo "Role: " . $_SESSION['role'] . "<br>";
+
+// Remove a session variable
+unset($_SESSION['role']);
+echo "Role removed.<br>";
+
+// Destroy session
+session_destroy();
+echo "All sessions destroyed.";
+?>
+
+85. List the steps to get file name from a path in PHP.
+<?php
+$path = "C:/xampp/htdocs/project/demo.txt";
+
+// Get file name with extension
+echo "File with extension: " . basename($path) . "<br>";
+
+// Get file name without extension
+echo "File without extension: " . pathinfo($path, PATHINFO_FILENAME) . "<br>";
+
+// Get only extension
+echo "File extension: " . pathinfo($path, PATHINFO_EXTENSION);
+?>
+
+86. PHP File functions with example program.
+<?php
+/*
+Common File Functions in PHP:
+1. fopen()   -> Open a file
+2. fread()   -> Read from file
+3. fwrite()  -> Write to file
+4. fclose()  -> Close file
+5. file_get_contents() -> Read entire file into string
+6. file_put_contents() -> Write string into file
+7. unlink()  -> Delete file
+*/
+
+$file = fopen("sample.txt", "w");
+fwrite($file, "Hello PHP File Functions!");
+fclose($file);
+
+echo "Data written to file successfully.";
+?>
+
+87. Create a PHP Admin Login, Logout form using session variables.
+<?php
+session_start();
+
+if(isset($_POST['login'])){
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+
+    if($user == "admin" && $pass == "1234"){
+        $_SESSION['admin'] = $user;
+        echo "Welcome Admin! <a href='?logout=true'>Logout</a>";
+    } else {
+        echo "Invalid Username or Password!";
+    }
+}
+
+if(isset($_GET['logout'])){
+    session_destroy();
+    echo "You have logged out.";
+}
+?>
+
+<form method="post">
+    Username: <input type="text" name="user"><br><br>
+    Password: <input type="password" name="pass"><br><br>
+    <input type="submit" name="login" value="Login">
+</form>
+
+88. Generate a simple PHP 'birthday countdown' script, the script will count the number of days between current day and birthday.
+<?php
+$today = strtotime(date("Y-m-d"));
+$birthday = strtotime("2025-11-10"); // change date to your birthday
+
+$diff = $birthday - $today;
+$days = ceil($diff / (60 * 60 * 24));
+
+if($days > 0){
+    echo "Birthday is in $days days!";
+} elseif($days == 0){
+    echo "Happy Birthday!";
+} else {
+    echo "Birthday has already passed.";
+}
+?>
+
+89. Construct a PHP program to read a file using file operation.
+<?php
+$file = fopen("sample.txt", "r");
+
+if($file){
+    while(!feof($file)){
+        echo fgets($file) . "<br>";
+    }
+    fclose($file);
+} else {
+    echo "Unable to open file!";
+}
+?>
+
+90. Write a PHP program to open a text file and print all the data in it.
+<?php
+$filename = "sample.txt";
+
+if(file_exists($filename)){
+    $data = file_get_contents($filename);
+    echo nl2br($data);
+} else {
+    echo "File does not exist!";
+}
+?>
+
+91. Recognize how sessions are stored in PHP?
+<?php
+/*
+Sessions in PHP are stored on the server.
+- By default, session data is stored in temporary files on the server (e.g., /tmp folder).
+- Each session has a unique session ID.
+- The session ID is stored on the client side as a cookie (PHPSESSID).
+- The server uses this ID to match and retrieve session data.
+*/
+echo "Sessions are stored on the server with a unique session ID linked via PHPSESSID cookie.";
+?>
+
+92. Apply the various steps involved to get cookie value using server-side scripting.
+<?php
+// Step 1: Set a cookie
+setcookie("username", "JohnDoe", time() + 3600, "/");
+
+// Step 2: Access the cookie value
+if(isset($_COOKIE['username'])){
+    echo "Cookie Value: " . $_COOKIE['username'];
+} else {
+    echo "Cookie not found.";
+}
+?>
+
+93. Write a PHP program that keeps track of how many times a visitor has loaded the page.
+<?php
+session_start();
+
+if(isset($_SESSION['views'])){
+    $_SESSION['views'] = $_SESSION['views'] + 1;
+} else {
+    $_SESSION['views'] = 1;
+}
+
+echo "You have visited this page " . $_SESSION['views'] . " times.";
+?>
+
+94. Evaluate the different file handling modes available in PHP with appropriate examples.
+<?php
+/*
+Modes:
+r  -> Read only
+w  -> Write only, clears file
+a  -> Append
+x  -> Create new file, fail if exists
+r+ -> Read/Write, pointer at start
+w+ -> Read/Write, clears file
+a+ -> Read/Write, pointer at end
+x+ -> Read/Write, fail if file exists
+*/
+
+$file = fopen("example.txt", "w");
+fwrite($file, "Hello File Handling!");
+fclose($file);
+
+echo "File created and written successfully.";
+?>
+
+95. Discuss the purpose and functionality of PHP sessions and outline their potential application in maintaining a user's shopping cart state across multiple pages.
+<?php
+/*
+Purpose of PHP Sessions:
+- Sessions allow data to be stored on the server and used across multiple pages.
+- Each user is given a unique session ID stored in a cookie.
+
+Functionality:
+- Store user information like login data, preferences, shopping cart items.
+- Values can be accessed until the session is destroyed.
+
+Application in Shopping Cart:
+- Store selected items, quantities, and prices in $_SESSION.
+- Retrieve session data on checkout page to display final bill.
+- Maintains cart state across multiple pages until checkout is complete.
+*/
+echo "Sessions are used to maintain state, e.g., storing items in a shopping cart across multiple pages.";
+?>
+
+96. How to register a variable in a PHP session? Give an example.
+<?php
+session_start();
+
+// Registering session variable
+$_SESSION['username'] = "Admin";
+
+echo "Session variable registered: " . $_SESSION['username'];
+?>
+
+97. Discover the various session functions of PHP. Explain its behavior.
+<?php
+/*
+Common Session Functions:
+
+1. session_start()   -> Starts a new session or resumes existing one.
+2. session_id()      -> Returns the current session ID.
+3. session_name()    -> Returns or sets the name of the session.
+4. session_unset()   -> Frees all session variables.
+5. session_destroy() -> Destroys all data associated with the session.
+6. session_regenerate_id() -> Generates a new session ID.
+
+Example:
+*/
+session_start();
+$_SESSION['user'] = "John";
+echo "User: " . $_SESSION['user'] . "<br>";
+echo "Session ID: " . session_id();
+?>
+
+98. Model an Admin Login, Logout form using session variables in PHP.
+<?php
+session_start();
+
+if(isset($_POST['login'])){
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+
+    if($user == "admin" && $pass == "1234"){
+        $_SESSION['admin'] = $user;
+        echo "Welcome Admin! <a href='?logout=true'>Logout</a>";
+    } else {
+        echo "Invalid login!";
+    }
+}
+
+if(isset($_GET['logout'])){
+    session_destroy();
+    echo "You are logged out.";
+}
+?>
+
+<form method="post">
+    Username: <input type="text" name="user"><br><br>
+    Password: <input type="password" name="pass"><br><br>
+    <input type="submit" name="login" value="Login">
+</form>
+
+99. Build a PHP program to apply the following tasks using session.
+
+(a) Initiate a session (or pick up an existing one).
+(b) Check for the existence of a pre-existing entry in $_SESSION. If not present, assume that the session is new.
+(c) Increment a counter that tracks how many times that the user has visited this page.
+(d) Store the incremented counter back in $_SESSION.
+(e) Provide a link back to the page itself, embedding the session ID as an argument if it is found.
+(f) Restrict the user from uploading the same file again and again. If the same file already exists in that folder, display an appropriate error message.
+
+<?php
+session_start();
+
+// (a) Session starts above
+
+// (b)(c)(d) Page visit counter
+if(!isset($_SESSION['counter'])){
+    $_SESSION['counter'] = 1;
+    echo "New session started. First visit.<br>";
+} else {
+    $_SESSION['counter']++;
+    echo "You have visited this page " . $_SESSION['counter'] . " times.<br>";
+}
+
+// (e) Link with session ID
+echo "<a href='?sid=" . session_id() . "'>Reload with Session ID</a><br><br>";
+
+// (f) File upload restriction
+if(isset($_FILES['file'])){
+    $filename = $_FILES['file']['name'];
+    $target = "uploads/" . $filename;
+
+    if(file_exists($target)){
+        echo "Error: File already exists!";
+    } else {
+        move_uploaded_file($_FILES['file']['tmp_name'], $target);
+        echo "File uploaded successfully!";
+    }
+}
+?>
+
+<form method="post" enctype="multipart/form-data">
+    Upload File: <input type="file" name="file">
+    <input type="submit" value="Upload">
+</form>
 
 
+100. Using PHP, construct a program to restrict the user from uploading the same file again and again. If the same file already exists in that folder, display an appropriate error message.
+<?php
+if(isset($_FILES['file'])){
+    $filename = $_FILES['file']['name'];
+    $target = "uploads/" . $filename;
 
+    if(file_exists($target)){
+        echo "Error: The file '$filename' already exists!";
+    } else {
+        move_uploaded_file($_FILES['file']['tmp_name'], $target);
+        echo "File uploaded successfully.";
+    }
+}
+?>
 
+<form method="post" enctype="multipart/form-data">
+    Choose File: <input type="file" name="file">
+    <input type="submit" value="Upload">
+</form>
 
+101. Identify, how a cookie’s value can be retrieved in a web application?
+<?php
+// Set a cookie
+setcookie("user", "JohnDoe", time() + 3600, "/");
 
+// Retrieve cookie value
+if(isset($_COOKIE['user'])){
+    echo "Cookie Value: " . $_COOKIE['user'];
+} else {
+    echo "Cookie not found.";
+}
+?>
+
+102. Develop a PHP program to use session variables and start a session.
+<?php
+session_start(); // Start session
+
+// Set session variables
+$_SESSION['username'] = "Admin";
+$_SESSION['role'] = "Manager";
+
+// Display session variables
+echo "Username: " . $_SESSION['username'] . "<br>";
+echo "Role: " . $_SESSION['role'];
+?>
+
+103. Create a very simple pageview counter by using ‘isset’ to check if the pageview variable has already been created.
+<?php
+session_start();
+
+if(isset($_SESSION['pageview'])){
+    $_SESSION['pageview']++;
+} else {
+    $_SESSION['pageview'] = 1;
+}
+
+echo "This page has been viewed " . $_SESSION['pageview'] . " times.";
+?>
+
+104. Formulate a PHP program to open a text file and print the nth line in the text file. If the nth line does not exist print 'no data'.
+<?php
+function printNthLine($filename, $n){
+    $file = file($filename); // read file into array
+    if(isset($file[$n-1])){
+        echo "Line $n: " . $file[$n-1];
+    } else {
+        echo "no data";
+    }
+}
+
+// Example usage
+printNthLine("sample.txt", 3); // change 3 to desired line number
+?>
+
+105. Write a PHP function to get the start and end date of a week (by week number) of a particular year.
+<?php
+function getWeekDateRange($year, $week){
+    $dto = new DateTime();
+    $dto->setISODate($year, $week);
+    $start = $dto->format('Y-m-d');
+    $dto->modify('+6 days');
+    $end = $dto->format('Y-m-d');
+    return array($start, $end);
+}
+
+// Example usage
+list($start, $end) = getWeekDateRange(2025, 38);
+echo "Week 38 of 2025 starts on $start and ends on $end.";
+?>
 
