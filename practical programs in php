@@ -1,6 +1,5 @@
-PROGRAM 3 control structures and loops
+control structures and loops
 
-<!DOCTYPE html>
 <html>
 <head>
     <title>Inventory Management</title>
@@ -52,9 +51,7 @@ foreach ($stock as $key => $value) {
 </html>
     
 
-
-PROGRAM 4 string functions
-<!DOCTYPE html>
+string functions
 <html>
 <head>
     <title>PHP String Functions</title>
@@ -107,9 +104,8 @@ echo "<p>Substring (first 7 chars): <span>" . substr($text, 0, 7) . "</span></p>
 </body>
 </html>
 
-Program 5 arrays and functions
+arrays and functions
 
-<!DOCTYPE html>
 <html>
 <head>
     <title>Student Grade Calculator</title>
@@ -195,8 +191,7 @@ echo "<p>Grade: <span>$grade</span></p>";
 </html>
 
  
-Program 6 form handling
-<!DOCTYPE html>
+form handling
 <html>
 <head>
     <title>Simple Registration Form</title>
@@ -247,8 +242,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </body>
 </html>
 
-Program 7  advanced arrays
-<!DOCTYPE html>
+advanced arrays
 <html>
 <head>
     <title>Employee Salary Details</title>
@@ -302,9 +296,7 @@ echo "</table>";
 </body>
 </html>
 
-Program 8  Exception handling
-
-<!DOCTYPE html>
+Exception handling
 <html>
 <head>
 <title>Bank Transactions</title>
@@ -347,7 +339,7 @@ if(isset($_POST['submit'])){
 </html>
 
 
-Program 9 server side validation 
+server side validation 
 <?php
 session_start();
 // Database connection
@@ -390,7 +382,7 @@ if (isset($_GET['logout'])) {
     exit();
 }
 ?>
-<!DOCTYPE html>
+
 <html>
 <head>
     <title>Login System</title>
@@ -544,7 +536,7 @@ if(isset($_GET['clear'])){
 </html>
 
 
-Program 11 image uploading
+image uploading
 
 <?php
 $uploadDir = "uploads/";
@@ -626,7 +618,7 @@ if(isset($_GET['delete'])){
 </html>
 
 
-Program 12 student database using mysql and php
+student database using mysql and php
 <?php
 // Database connection
 $host = "localhost";
@@ -730,7 +722,7 @@ if (isset($_POST['return_book'])) {
 </html>
 
 
-Program 13 library management mysql functions
+library management mysql functions
 <?php
 // Database Connection
 $host = "localhost:3307";
