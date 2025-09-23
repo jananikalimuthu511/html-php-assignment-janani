@@ -1,1 +1,154 @@
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple Webpage Design</title>
+    <style>
+        /* Reset some default browser styling */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        /* General Styles */
+        body {
+            font-family: Arial, sans-serif;
+            line-height: 1.6;
+            background-color: #f4f4f4;
+            color: #333;
+        }
+
+        /* Container to center content */
+        .container {
+            width: 80%;
+            margin: 0 auto;
+        }
+
+        /* Header Styles */
+        header {
+            background-color: #333;
+            color: #fff;
+            padding: 20px 0;
+        }
+
+        header h1 {
+            display: inline-block;
+            margin-left: 20px;
+            font-size: 2em;
+        }
+
+        nav ul {
+            list-style-type: none;
+            float: right;
+            margin-top: 10px;
+        }
+
+        nav ul li {
+            display: inline;
+            margin-right: 15px;
+        }
+
+        nav ul li a {
+            color: #fff;
+            text-decoration: none;
+            font-size: 1.1em;
+        }
+
+        /* Main content styles */
+        .main-content {
+            display: flex;
+            justify-content: space-between;
+            padding: 30px 0;
+            background-color: #fff;
+        }
+
+        .left-column,
+        .right-column {
+            width: 48%;
+        }
+
+        .left-column h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .left-column p {
+            font-size: 1.1em;
+            line-height: 1.8;
+        }
+
+        .right-column h2 {
+            font-size: 1.8em;
+            margin-bottom: 15px;
+        }
+
+        .right-column ul {
+            list-style-type: none;
+        }
+
+        .right-column ul li {
+            margin-bottom: 10px;
+        }
+
+        .right-column ul li a {
+            text-decoration: none;
+            color: #333;
+            font-size: 1.1em;
+        }
+
+        /* Footer Styles */
+        footer {
+            background-color: #333;
+            color: #fff;
+            padding: 15px 0;
+            text-align: center;
+        }
+
+        footer p {
+            font-size: 1em;
+        }
+    </style>
+</head>
+<body>
+
+    <header>
+        <div class="container">
+            <h1>My Simple Webpage</h1>
+            <nav>
+                <ul>
+                    <li><a href="#">Home</a></li>
+                    <li><a href="#">About</a></li>
+                    <li><a href="#">Services</a></li>
+                    <li><a href="#">Contact</a></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <section class="main-content">
+        <div class="container">
+            <div class="left-column">
+                <h2>Welcome to My Website!</h2>
+                <p>This is a simple webpage design using HTML and CSS. It includes a header, a two-column layout for the main content, and a footer. You can customize this template to create your own webpage.</p>
+            </div>
+            <div class="right-column">
+                <h2>Latest News</h2>
+                <ul>
+                    <li><a href="#">News item 1</a></li>
+                    <li><a href="#">News item 2</a></li>
+                    <li><a href="#">News item 3</a></li>
+                </ul>
+            </div>
+        </div>
+    </section>
+
+    <footer>
+        <div class="container">
+            <p>&copy; 2025 My Simple Webpage. All rights reserved.</p>
+        </div>
+    </footer>
+
+</body>
+</html>
 
