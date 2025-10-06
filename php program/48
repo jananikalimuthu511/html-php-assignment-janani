@@ -1,0 +1,15 @@
+
+48. Record number handling in PHP with suitable examples.
+
+<?php
+$students = ["Alex", "Brian", "Catherine", "David", "Emma"];
+foreach ($students as $recordNo => $name) {
+    echo "Record No: " . ($recordNo + 1) . " - Name: $name <br>";
+}
+?>
+OUTPUT:
+Record No: 1 - Name: Alex 
+Record No: 2 - Name: Brian 
+Record No: 3 - Name: Catherine 
+Record No: 4 - Name: David 
+Record No: 5 - Name: Emma 
