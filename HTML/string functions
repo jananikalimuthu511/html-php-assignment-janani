@@ -1,0 +1,52 @@
+string functions
+<html>
+<head>
+    <title>PHP String Functions</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f0f8ff;
+            margin: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: darkblue;
+        }
+        .box {
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px gray;
+            width: 500px;
+            margin: auto;
+        }
+        p {
+            font-size: 18px;
+        }
+        span {
+            color: darkred;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<h1>PHP String Functions Demo</h1>
+<div class="box">
+<?php
+// Input string
+$text = "Welcome to Hotel SBD";
+
+// String functions
+echo "<p>Original Text: <span>$text</span></p>";
+echo "<p>Uppercase: <span>" . strtoupper($text) . "</span></p>";
+echo "<p>Lowercase: <span>" . strtolower($text) . "</span></p>";
+echo "<p>Length of Text: <span>" . strlen($text) . "</span></p>";
+echo "<p>Reversed Text: <span>" . strrev($text) . "</span></p>";
+echo "<p>Replace 'Hotel' with 'Restaurant': <span>" . str_replace("Hotel", "Restaurant", $text) . "</span></p>";
+echo "<p>Substring (first 7 chars): <span>" . substr($text, 0, 7) . "</span></p>";
+?>
+</div>
+
+</body>
+</html>
