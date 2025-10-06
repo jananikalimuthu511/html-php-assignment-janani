@@ -1,0 +1,19 @@
+56) What are all the Functions available to sort a PHP array?
+<?php
+$fruits = ["banana", "apple", "Mango", "cherry", "Apple"];
+sort($fruits);
+print_r($fruits);
+asort($fruits);
+print_r($fruits);
+$assoc = ["d"=>3, "a"=>1, "c"=>2];
+ksort($assoc);
+print_r($assoc);
+$files = ["file1.txt", "file10.txt", "file2.txt"];
+natsort($files);
+print_r($files);
+?>
+Output:
+Array ([0] => Apple[1] => Mango[2] => apple[3] => banana[4] => cherry ) 
+Array ([0] => Apple[1] => Mango[2] => apple[3] => banana[4] => cherry ) 
+Array ([a] => 1[c] => 2[d] => 3 ) 
+Array ([0] => file1.txt[2] => file2.txt[1] => file10.txt ) 
