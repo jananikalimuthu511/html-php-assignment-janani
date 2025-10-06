@@ -1,0 +1,18 @@
+72. Write the PHP program to implement the following session functions. (i) session_register() (ii) session_unset() (iii) session_destroy()
+<?php
+session_start(); // start session
+
+// Registering session variable
+$_SESSION["username"] = "Admin";
+
+// Display session value
+echo "Session Registered: " . $_SESSION["username"] . "<br>";
+
+// Unset session variable
+session_unset();
+echo "All session variables are unset.<br>";
+
+// Destroy session
+session_destroy();
+echo "Session destroyed.";
+?>
