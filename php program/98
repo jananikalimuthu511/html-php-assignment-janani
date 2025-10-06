@@ -1,0 +1,27 @@
+98. Model an Admin Login, Logout form using session variables in PHP.
+<?php
+session_start();
+
+if(isset($_POST['login'])){
+    $user = $_POST['user'];
+    $pass = $_POST['pass'];
+
+    if($user == "admin" && $pass == "1234"){
+        $_SESSION['admin'] = $user;
+        echo "Welcome Admin! <a href='?logout=true'>Logout</a>";
+    } else {
+        echo "Invalid login!";
+    }
+}
+
+if(isset($_GET['logout'])){
+    session_destroy();
+    echo "You are logged out.";
+}
+?>
+
+<form method="post">
+    Username: <input type="text" name="user"><br><br>
+    Password: <input type="password" name="pass"><br><br>
+    <input type="submit" name="login" value="Login">
+</form>
