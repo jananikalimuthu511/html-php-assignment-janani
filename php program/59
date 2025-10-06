@@ -1,0 +1,15 @@
+59) Create a function that takes an array of numbers as input and returns the average value. 
+<?php
+function calculateAverage($numbers) {
+    if (count($numbers) === 0) {
+        return 0; // Avoid division by zero
+    }
+    $sum = array_sum($numbers);  
+    $count = count($numbers);    
+    return $sum / $count;        
+}
+$values = [10, 20, 30, 40, 50];
+echo "The average is: " . calculateAverage($values);
+?>
+OUTPUT:
+The average is: 30
