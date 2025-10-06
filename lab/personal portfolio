@@ -1,0 +1,49 @@
+3. Imagine you are building a personal portfolio website. Design a web page layout that
+includes a header, a navigation menu, a main content area for displaying your projects
+and a footer. Explain how you would structure the HTML code and apply CSS styles to
+achieve the desired layout and visual design.
+
+Code:
+<html>
+<head>
+  <title>My Portfolio</title>
+  <style>
+    body { font-family: Arial; margin: 0; }
+    header, footer { background: #333; color: white; text-align: center; padding: 15px; }
+    nav { background: #444; text-align: center; padding: 10px; }
+    nav a { color: white; margin: 0 10px; text-decoration: none; }
+    main { padding: 20px; }
+    .project { background: #f9f9f9; padding: 10px; margin-bottom: 10px; }
+  </style>
+</head>
+<body>
+
+<header>
+  <h1>Janani's Portfolio</h1>
+</header>
+
+<nav>
+  <a href="#">Home</a>
+  <a href="#">Projects</a>
+  <a href="#">About</a>
+  <a href="#">Contact</a>
+</nav>
+
+<main>
+  <h2>Projects</h2>
+  <div class="project">
+    <h3>Project 1</h3>
+    <p>Simple website using HTML and CSS.</p>
+  </div>
+  <div class="project">
+    <h3>Project 2</h3>
+    <p>Basic JavaScript calculator.</p>
+  </div>
+</main>
+
+<footer>
+  <p>&copy;janani 2025 </p>
+</footer>
+
+</body>
+</html>
