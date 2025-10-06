@@ -1,0 +1,23 @@
+16. Write a PHP function that takes two numbers as input and returns the sum of those
+numbers. Display the result on the webpage, when a button is clicked.
+
+Code:
+<?php
+function addNumbers($a, $b) {
+    return $a + $b;
+}
+
+echo "Enter first number: ";
+$num1 = trim(fgets(STDIN));
+
+echo "Enter second number: ";
+$num2 = trim(fgets(STDIN));
+
+$sum = addNumbers($num1, $num2);
+echo "The sum is: $sum\n";
+?>
+
+Output:
+Enter first number: 10
+Enter second number: 30
+The sum is: 40
