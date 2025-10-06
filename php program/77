@@ -1,0 +1,15 @@
+77. Classify the various network functions which provide network information or functions.
+<?php
+/*
+Common Network Functions in PHP:
+
+1. gethostbyname()  -> Returns the IPv4 address of a host.
+2. gethostbyaddr()  -> Returns the host name of an IP address.
+3. gethostbynamel() -> Returns a list of IPv4 addresses for a host.
+4. ip2long()        -> Converts IP address to long integer.
+5. long2ip()        -> Converts long integer back to IP address.
+6. dns_check_record()-> Checks DNS record for a given host.
+*/
+echo "Network functions explained in comments.";
+?>
+
