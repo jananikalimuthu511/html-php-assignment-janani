@@ -1,0 +1,85 @@
+arrays and functions
+
+<html>
+<head>
+    <title>Student Grade Calculator</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background: #f9f9f9;
+            margin: 40px;
+        }
+        h1 {
+            text-align: center;
+            color: darkgreen;
+        }
+        .card {
+            width: 500px;
+            margin: auto;
+            background: white;
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 2px 2px 8px gray;
+        }
+        p {
+            font-size: 18px;
+        }
+        span {
+            font-weight: bold;
+            color: darkred;
+        }
+    </style>
+</head>
+<body>
+
+<h1>Student Grade Calculator</h1>
+<div class="card">
+<?php
+// Array of student marks
+$marks = array(
+    "Maths" => 85,
+    "Science" => 78,
+    "English" => 92,
+    "Computer" => 88,
+    "History" => 74
+);
+
+// Function to calculate total
+function calculateTotal($marks) {
+    return array_sum($marks);
+}
+
+// Function to calculate average
+function calculateAverage($marks) {
+    return array_sum($marks) / count($marks);
+}
+
+// Function to assign grade
+function assignGrade($average) {
+    if ($average >= 90) return "A+";
+    elseif ($average >= 80) return "A";
+    elseif ($average >= 70) return "B";
+    elseif ($average >= 60) return "C";
+    else return "Fail";
+}
+
+// Calculate values
+$total = calculateTotal($marks);
+$average = calculateAverage($marks);
+$grade = assignGrade($average);
+
+// Display results
+echo "<p><span>Marks Obtained:</span></p>";
+foreach ($marks as $subject => $mark) {
+    echo "<p>$subject : $mark</p>";
+}
+
+echo "<hr>";
+echo "<p>Total Marks: <span>$total</span></p>";
+echo "<p>Average Marks: <span>$average</span></p>";
+echo "<p>Grade: <span>$grade</span></p>";
+?>
+</div>
+
+</body>
+</html>
