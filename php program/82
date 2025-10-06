@@ -1,0 +1,16 @@
+82. Implement the setcookie( ) function with various arguments using the PHP program.
+<?php
+// setcookie(name, value, expire, path, domain, secure, httponly)
+
+// 1. Simple cookie
+setcookie("user", "Admin", time() + 3600);
+
+// 2. Cookie with path
+setcookie("pathCookie", "PathTest", time() + 3600, "/");
+
+// 3. Secure cookie (works only with HTTPS)
+setcookie("secureCookie", "SecureValue", time() + 3600, "/", "", true);
+
+// Display message
+echo "Different cookies have been set!";
+?>
