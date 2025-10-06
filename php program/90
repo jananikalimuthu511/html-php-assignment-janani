@@ -1,0 +1,11 @@
+90. Write a PHP program to open a text file and print all the data in it.
+<?php
+$filename = "sample.txt";
+
+if(file_exists($filename)){
+    $data = file_get_contents($filename);
+    echo nl2br($data);
+} else {
+    echo "File does not exist!";
+}
+?>
