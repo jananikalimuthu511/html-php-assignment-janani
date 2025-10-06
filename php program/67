@@ -1,0 +1,21 @@
+67) Construct a program that tokenizes a sentence into words using regular expressions. Then, count the
+number of occurrences of each word and display the results.
+<?php
+$sentence = "PHP is great, and PHP is powerful. PHP is easy to learn!";
+$words = preg_split("/\W+/", strtolower($sentence), -1, PREG_SPLIT_NO_EMPTY);
+$wordCount = array_count_values($words);
+echo "<h3>Word Frequency Count</h3>";
+foreach ($wordCount as $word => $count) {
+    echo "$word : $count <br>";
+}
+?>
+OUTPUT:
+Word Frequency Count
+php : 3 
+is : 3 
+great : 1 
+and : 1 
+powerful : 1 
+easy : 1 
+to : 1 
+learn : 1 
