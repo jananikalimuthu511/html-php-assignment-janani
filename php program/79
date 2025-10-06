@@ -1,0 +1,13 @@
+79. Create a PHP program to append two files in another file.
+<?php
+$file1 = "file1.txt";
+$file2 = "file2.txt";
+$file3 = "merged.txt";
+
+$content1 = file_get_contents($file1);
+$content2 = file_get_contents($file2);
+
+file_put_contents($file3, $content1 . "\n" . $content2);
+
+echo "Files appended successfully into merged.txt";
+?>
