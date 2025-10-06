@@ -1,0 +1,9 @@
+66) Difference between count() and sizeof() function in PHP.
+<?php
+$fruits = ["apple", "banana", "cherry"];
+echo "Using count(): " . count($fruits) . "<br>";
+echo "Using sizeof(): " . sizeof($fruits) . "<br>";
+?>
+OUTPUT:
+Using count(): 3
+Using sizeof(): 3
