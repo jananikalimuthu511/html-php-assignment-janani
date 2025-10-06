@@ -1,0 +1,13 @@
+62) Demonstrate a PHP script which rounds the following values with 1 decimal digit precision.
+Sample values : 1.65 1.65 -1.54
+<?php
+$values = [1.65, 1.65, -1.54];
+foreach ($values as $num) {
+    echo "Original: $num → Rounded: " . round($num, 1) . "<br>";
+}
+?>
+OUTPUT:
+Original: 1.65 → Rounded: 1.7
+Original: 1.65 → Rounded: 1.7
+Original: -1.54 → Rounded: -1.5
+
