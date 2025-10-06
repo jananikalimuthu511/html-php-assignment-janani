@@ -1,0 +1,103 @@
+student database using mysql and php
+<?php
+// Database connection
+$host = "localhost";
+$user = "root";
+$pass = ""; // put your MySQL root password if set
+$dbname = "library_db";
+
+$conn = mysqli_connect($host, $user, $pass, $dbname);
+if (!$conn) {
+    die("Connection failed: " . mysqli_connect_error());
+}
+
+// Add a book
+if (isset($_POST['add_book'])) {
+    $title = $_POST['title'];
+    $author = $_POST['author'];
+    $sql = "INSERT INTO books (title, author) VALUES ('$title', '$author')";
+    mysqli_query($conn, $sql);
+    echo "<p style='color:green;'>Book added successfully!</p>";
+}
+
+// Issue a book
+if (isset($_POST['issue_book'])) {
+    $user_id = $_POST['user_id'];
+    $book_id = $_POST['book_id'];
+
+    $check = mysqli_query($conn, "SELECT available FROM books WHERE id=$book_id");
+    $row = mysqli_fetch_assoc($check);
+
+    if ($row && $row['available']) {
+        mysqli_query($conn, "INSERT INTO issued_books (user_id, book_id, issue_date) 
+                             VALUES ('$user_id', '$book_id', NOW())");
+        mysqli_query($conn, "UPDATE books SET available=0 WHERE id=$book_id");
+        echo "<p style='color:green;'>Book issued successfully!</p>";
+    } else {
+        echo "<p style='color:red;'>Book is not available!</p>";
+    }
+}
+
+// Return a book
+if (isset($_POST['return_book'])) {
+    $book_id = $_POST['book_id'];
+    mysqli_query($conn, "UPDATE issued_books SET return_date=NOW() 
+                         WHERE book_id=$book_id AND return_date IS NULL");
+    mysqli_query($conn, "UPDATE books SET available=1 WHERE id=$book_id");
+    echo "<p style='color:blue;'>Book returned successfully!</p>";
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Library Management</title>
+</head>
+<body>
+    <h1>📚 Library Management System</h1>
+
+    <!-- Add Book -->
+    <h3>Add a New Book</h3>
+    <form method="POST">
+        <input type="text" name="title" placeholder="Book Title" required>
+        <input type="text" name="author" placeholder="Author" required>
+        <button type="submit" name="add_book">Add Book</button>
+    </form>
+    <hr>
+
+    <!-- Issue Book -->
+    <h3>Issue a Book</h3>
+    <form method="POST">
+        <input type="number" name="user_id" placeholder="User ID" required>
+        <input type="number" name="book_id" placeholder="Book ID" required>
+        <button type="submit" name="issue_book">Issue Book</button>
+    </form>
+    <hr>
+
+    <!-- Return Book -->
+    <h3>Return a Book</h3>
+    <form method="POST">
+        <input type="number" name="book_id" placeholder="Book ID" required>
+        <button type="submit" name="return_book">Return Book</button>
+    </form>
+    <hr>
+
+    <!-- View Books -->
+    <h3>All Books</h3>
+    <?php
+    $result = mysqli_query($conn, "SELECT * FROM books");
+    echo "<table border='1' cellpadding='5'>
+          <tr><th>ID</th><th>Title</th><th>Author</th><th>Status</th></tr>";
+    while ($row = mysqli_fetch_assoc($result)) {
+        echo "<tr>
+            <td>".$row['id']."</td>
+            <td>".$row['title']."</td>
+            <td>".$row['author']."</td>
+            <td>".($row['available'] ? "Available" : "Issued")."</td>
+        </tr>";
+    }
+    echo "</table>";
+    ?>
+</body>
+</html>
+
