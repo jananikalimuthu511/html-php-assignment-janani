@@ -1,0 +1,46 @@
+24. Write a PHP script to manipulate the strings with all the string functions.
+
+Code:
+<?php
+$str = "  Hello World! Welcome to PHP.  ";
+
+$trimmed = trim($str);
+
+$lower = strtolower($trimmed);
+$upper = strtoupper($trimmed);
+
+$length = strlen($trimmed);
+
+$wordCount = str_word_count($trimmed);
+
+$replaced = str_replace("World", "Friend", $trimmed);
+
+$reversed = strrev($trimmed);
+
+$pos = strpos($trimmed, "PHP");
+
+$sub = substr($trimmed, 6, 5);
+
+echo "Original: '$str'\n";
+echo "Trimmed: '$trimmed'\n";
+echo "Lowercase: $lower\n";
+echo "Uppercase: $upper\n";
+echo "Length: $length\n";
+echo "Word count: $wordCount\n";
+echo "Replace: $replaced\n";
+echo "Reversed: $reversed\n";
+echo "Position of 'PHP': $pos\n";
+echo "Substring: $sub\n";
+?>
+
+Output:
+Original: '  Hello World! Welcome to PHP.  '
+Trimmed: 'Hello World! Welcome to PHP.'
+Lowercase: hello world! welcome to php.
+Uppercase: HELLO WORLD! WELCOME TO PHP.
+Length: 28
+Word count: 5
+Replace: Hello Friend! Welcome to PHP.
+Reversed: .PHP ot emocleW !dlroW olleH
+Position of 'PHP': 24
+Substring: World
