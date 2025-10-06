@@ -1,0 +1,13 @@
+85. List the steps to get file name from a path in PHP.
+<?php
+$path = "C:/xampp/htdocs/project/demo.txt";
+
+// Get file name with extension
+echo "File with extension: " . basename($path) . "<br>";
+
+// Get file name without extension
+echo "File without extension: " . pathinfo($path, PATHINFO_FILENAME) . "<br>";
+
+// Get only extension
+echo "File extension: " . pathinfo($path, PATHINFO_EXTENSION);
+?>
