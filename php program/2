@@ -1,0 +1,18 @@
+2. Create a PHP program to display the division table using for-loop.
+1 2 3
+1 1 0.5 0.33
+2 2 1 0.66
+3 3 1.5 1
+Answer:
+<?php
+echo "  1 2 3\n";
+for ($i = 1; $i <= 3; $i++) {
+    echo $i . " ";
+    for ($j = 1; $j <= 3; $j++) {
+        $result = $i / $j;
+        echo round($result, 2) . " ";
+    }
+    echo "\n";
+}
+?>
+
