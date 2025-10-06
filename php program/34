@@ -1,0 +1,11 @@
+34) Replace all occurrences of a specific word with another word in a string using regular expressions in PHP.
+<?php
+$text = "PHP is fun. Learning PHP can be very interesting. I love PHP!";
+$search = "/\bPHP\b/";
+$replace = "Java";
+$result = preg_replace($search, $replace, $text);
+echo "Original Text: $text<br>";
+echo "Modified Text: $result";
+?>
+OUTPUT:
+Original Text: PHP is fun. Learning PHP can be very interesting. I love PHP!<br>Modified Text: Java is fun. Learning Java can be very interesting. I love Java!
