@@ -1,0 +1,35 @@
+45) Write a PHP function to compare two multidimensional arrays and return the difference.
+<?php
+$array1 = array(
+    array("id" => 1, "name" => "Alice"),
+    array("id" => 2, "name" => "Bob"),
+    array("id" => 3, "name" => "Charlie")
+);
+
+$array2 = array(
+    array("id" => 1, "name" => "Alice"),
+    array("id" => 2, "name" => "Bob"),
+    array("id" => 3, "name" => "David")
+);
+$diff = array_udiff($array1, $array2, function($a, $b) {
+    return ($a == $b) ? 0 : 1;
+});
+echo "<pre>";
+print_r($diff);
+echo "</pre>";
+?>
+OUTPUT:
+Array
+(
+    [0] => Array
+        (
+            [id] => 1
+            [name] => Alice
+        )
+
+    [2] => Array
+        (
+            [id] => 3
+            [name] => Charlie
+        )
+)
