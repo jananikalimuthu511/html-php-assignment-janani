@@ -1,0 +1,7 @@
+36) Create an array of fruits in PHP and display the third element.
+<?php
+$Vegetable= array("Apple", "Banana", "Carrot", "Orange", "Grapes");
+echo "The odd one is : " . $Vegetable[2];
+?>
+OUTPUT:
+The odd one is : Carrot
