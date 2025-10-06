@@ -1,0 +1,20 @@
+94. Evaluate the different file handling modes available in PHP with appropriate examples.
+<?php
+/*
+Modes:
+r  -> Read only
+w  -> Write only, clears file
+a  -> Append
+x  -> Create new file, fail if exists
+r+ -> Read/Write, pointer at start
+w+ -> Read/Write, clears file
+a+ -> Read/Write, pointer at end
+x+ -> Read/Write, fail if file exists
+*/
+
+$file = fopen("example.txt", "w");
+fwrite($file, "Hello File Handling!");
+fclose($file);
+
+echo "File created and written successfully.";
+?>
