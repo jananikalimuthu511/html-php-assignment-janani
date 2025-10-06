@@ -1,0 +1,44 @@
+99. Build a PHP program to apply the following tasks using session.
+
+(a) Initiate a session (or pick up an existing one).
+(b) Check for the existence of a pre-existing entry in $_SESSION. If not present, assume that the session is new.
+(c) Increment a counter that tracks how many times that the user has visited this page.
+(d) Store the incremented counter back in $_SESSION.
+(e) Provide a link back to the page itself, embedding the session ID as an argument if it is found.
+(f) Restrict the user from uploading the same file again and again. If the same file already exists in that folder, display an appropriate error message.
+
+<?php
+session_start();
+
+// (a) Session starts above
+
+// (b)(c)(d) Page visit counter
+if(!isset($_SESSION['counter'])){
+    $_SESSION['counter'] = 1;
+    echo "New session started. First visit.<br>";
+} else {
+    $_SESSION['counter']++;
+    echo "You have visited this page " . $_SESSION['counter'] . " times.<br>";
+}
+
+// (e) Link with session ID
+echo "<a href='?sid=" . session_id() . "'>Reload with Session ID</a><br><br>";
+
+// (f) File upload restriction
+if(isset($_FILES['file'])){
+    $filename = $_FILES['file']['name'];
+    $target = "uploads/" . $filename;
+
+    if(file_exists($target)){
+        echo "Error: File already exists!";
+    } else {
+        move_uploaded_file($_FILES['file']['tmp_name'], $target);
+        echo "File uploaded successfully!";
+    }
+}
+?>
+
+<form method="post" enctype="multipart/form-data">
+    Upload File: <input type="file" name="file">
+    <input type="submit" value="Upload">
+</form>
