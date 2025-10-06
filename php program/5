@@ -1,0 +1,24 @@
+5. You are building a website where users can calculate the total cost of their purchases.
+Write a PHP program that takes the price and quantity of three items from the user and
+calculates the subtotal, tax (10% of the subtotal),and the total cost (subtotal + tax).
+Display the results to the user.
+
+Code:
+<?php
+$price1 = 100;
+$qty1   = 2;
+
+$price2 = 50;
+$qty2   = 3;
+
+$price3 = 20;
+$qty3   = 5;
+
+$subtotal = ($price1 * $qty1) + ($price2 * $qty2) + ($price3 * $qty3);
+$tax = $subtotal * 0.10;
+$total = $subtotal + $tax;
+
+Output:
+Subtotal: Rs. 450
+Tax (10%): Rs. 45
+Total: Rs. 495
