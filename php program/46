@@ -1,0 +1,23 @@
+46) Write a PHP program to find the index of a specific value in an array.
+<?php
+$fruits = array("apple", "banana", "cherry", "mango", "orange");
+$search = "mango";
+$index = array_search($search, $fruits);
+if ($index !== false) {
+    echo "The value '$search' is found at index: $index";
+} else {
+    echo "The value '$search' is not found in the array.";
+}
+?>
+OUTPUT:
+The value 'mango' is found at index: 3
+
+47) Delete an element from the below array. And print the array elements in PHP. $x = array (1, 2, 3, 4, 5);
+<?php
+$x = [1, 2, 3, 4, 5];
+unset($x[2]);
+$x = array_values($x);
+echo implode(' ', $x), PHP_EOL;
+
+OUTPUT:
+1 2 4 5
