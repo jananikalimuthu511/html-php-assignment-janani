@@ -1,0 +1,91 @@
+server side validation 
+<?php
+session_start();
+// Database connection
+$servername = "localhost:3306";
+$dbusername = "root";   // Database username
+$dbpassword = "1234";   // Database password
+$dbname     = "testdb1"; // Database name
+$conn = new mysqli($servername, $dbusername, $dbpassword, $dbname);
+// Check connection
+if ($conn->connect_error) {
+    die("Connection failed: " . $conn->connect_error);
+}
+$error = "";
+$success = "";
+// Handle form submission
+if ($_SERVER["REQUEST_METHOD"] == "POST") {
+    $username = $_POST['username'] ?? '';
+    $password = $_POST['password'] ?? '';
+    // Server-side validation
+    if (empty($username) || empty($password)) {
+        $error = "All fields are required!";
+    } else {
+        // Check credentials in database
+        $sql = "SELECT * FROM users WHERE username='$username' AND password='$password'";
+        $result = $conn->query($sql);
+        if ($result->num_rows > 0) {
+            $_SESSION['username'] = $username;
+            // Redirect after successful login
+            header("Location: ?welcome=1");
+            exit();
+        } else {
+            $error = "Invalid Username or Password!";
+        }
+    }
+}
+// Handle logout
+if (isset($_GET['logout'])) {
+    session_destroy();
+    header("Location: " . $_SERVER['PHP_SELF']);
+    exit();
+}
+?>
+
+<html>
+<head>
+    <title>Login System</title>
+    <style>
+        body { font-family: Arial; background: #f2f2f2; }
+        .box { width: 300px; margin: 100px auto; padding: 20px; background: #fff; border-radius: 10px; box-shadow: 0 0 10px #aaa; }
+        h2 { text-align: center; }
+        input { width: 100%; padding: 10px; margin: 8px 0; }
+        button { width: 100%; padding: 10px; background: #5cb85c; color: white; border: none; cursor: pointer; border-radius: 5px; }
+        .error { color: red; text-align: center; }
+        .success { color: green; text-align: center; }
+    </style>
+</head>
+<body>
+<div class="box">
+<?php if (isset($_SESSION['username']) && isset($_GET['welcome'])): ?>
+    <h2>Welcome, <?php echo $_SESSION['username']; ?> 🎉</h2>
+    <p>You have successfully logged in.</p>
+    <a href="?logout=1"><button>Logout</button></a>
+<?php else: ?>
+    <h2>Login</h2>
+    <form method="POST" action="">
+        <input type="text" name="username" placeholder="Username">
+        <input type="password" name="password" placeholder="Password">
+        <button type="submit">Login</button>
+    </form>
+    <div class="error"><?php echo $error; ?></div>
+<?php endif; ?>
+</div>
+</body>
+</html>
+(Mysql)
+-- Create Database
+CREATE DATABASE testdb;
+
+-- Use Database
+USE testdb;
+-- Create Table
+CREATE TABLE users (
+    id INT AUTO_INCREMENT PRIMARY KEY,
+    name VARCHAR(50) NOT NULL,
+    email VARCHAR(50) UNIQUE NOT NULL,
+    password VARCHAR(255) NOT NULL
+);
+-- Insert Example Data
+INSERT INTO users (name, email, password)
+VALUES ('John Doe', 'john@example.com', '12345');
