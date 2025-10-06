@@ -1,0 +1,53 @@
+advanced arrays
+<html>
+<head>
+    <title>Employee Salary Details</title>
+    <style>
+        body { font-family: Arial, sans-serif; background: #f4f4f9; margin: 30px; }
+        h1 { text-align: center; color: darkgreen; }
+        table {
+            width: 60%; margin: auto; border-collapse: collapse; background: white;
+            box-shadow: 2px 2px 6px gray; border-radius: 8px; overflow: hidden;
+        }
+        th, td { padding: 12px; text-align: center; border: 1px solid #ccc; }
+        th { background: darkgreen; color: white; }
+        tr:nth-child(even) { background: #f9f9f9; }
+    </style>
+</head>
+<body>
+
+<h1>Employee Salary Details</h1>
+
+<?php
+// Employee data (ID, Name, Basic Salary, Bonus)
+$employees = [
+    ["id" => 101, "name" => "Rahul", "basic" => 30000, "bonus" => 5000],
+    ["id" => 102, "name" => "Priya", "basic" => 40000, "bonus" => 7000],
+    ["id" => 103, "name" => "Arjun", "basic" => 25000, "bonus" => 3000],
+];
+
+// Function to calculate total salary
+function calculateTotalSalary($basic, $bonus) {
+    return $basic + $bonus;
+}
+
+// Display employee salary details
+echo "<table>";
+echo "<tr><th>ID</th><th>Name</th><th>Basic Salary</th><th>Bonus</th><th>Total Salary</th></tr>";
+
+foreach ($employees as $emp) {
+    $total = calculateTotalSalary($emp["basic"], $emp["bonus"]);
+    echo "<tr>";
+    echo "<td>".$emp["id"]."</td>";
+    echo "<td>".$emp["name"]."</td>";
+    echo "<td>₹".$emp["basic"]."</td>";
+    echo "<td>₹".$emp["bonus"]."</td>";
+    echo "<td><b>₹".$total."</b></td>";
+    echo "</tr>";
+}
+
+echo "</table>";
+?>
+
+</body>
+</html>
