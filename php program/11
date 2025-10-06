@@ -1,0 +1,38 @@
+11. Develop a PHP program to show days of the week using switch cases.
+
+Code:
+<?php
+echo "Enter a number (1 to 7) to get the day of the week: ";
+$day_number = trim(fgets(STDIN));
+
+switch ($day_number) {
+    case 1:
+        echo "Monday\n";
+        break;
+    case 2:
+        echo "Tuesday\n";
+        break;
+    case 3:
+        echo "Wednesday\n";
+        break;
+    case 4:
+        echo "Thursday\n";
+        break;
+    case 5:
+        echo "Friday\n";
+        break;
+    case 6:
+        echo "Saturday\n";
+        break;
+    case 7:
+        echo "Sunday\n";
+        break;
+    default:
+        echo "Invalid input. Please enter a number between 1 and 7.\n";
+        break;
+}
+?>
+
+Output: 
+Enter a number (1 to 7) to get the day of the week: 1
+Monday
