@@ -1,0 +1,23 @@
+14. Show a form with input fields for a user's name, email, and message. When the form is
+submitted, display a confirmation message on the same page with the user's name and
+email.
+
+Code:
+<html>
+<head>
+    <title>Simple Contact Form</title>
+</head>
+<body>
+
+<h2>Contact Us</h2>
+
+<form>
+    Name: <input type="text" name="name" required><br><br>
+    Email: <input type="email" name="email" required><br><br>
+    Message:<br>
+    <textarea name="message" rows="4" cols="30" required></textarea><br><br>
+    <input type="submit" value="Submit">
+</form>
+
+</body>
+</html>
