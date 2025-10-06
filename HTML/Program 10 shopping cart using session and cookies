@@ -1,0 +1,102 @@
+Program 10 shopping cart using session and cookies
+
+<?php
+session_start(); // start session
+
+// Simple products
+$products = [
+    1 => ["name"=>"Laptop","price"=>50000],
+    2 => ["name"=>"Phone","price"=>20000],
+    3 => ["name"=>"Headphones","price"=>2000]
+];
+
+// Initialize cart from session or cookie
+if(!isset($_SESSION['cart']) && isset($_COOKIE['cart'])){
+    $_SESSION['cart'] = unserialize($_COOKIE['cart']);
+}
+
+// Add item
+if(isset($_GET['add'])){
+    $id = $_GET['add'];
+    if(isset($_SESSION['cart'][$id])){
+        $_SESSION['cart'][$id]['qty'] += 1;
+    } else {
+        $_SESSION['cart'][$id] = [
+            "name"=>$products[$id]['name'],
+            "price"=>$products[$id]['price'],
+            "qty"=>1
+        ];
+    }
+    setcookie("cart", serialize($_SESSION['cart']), time()+3600); // save in cookie 1 hr
+}
+
+// Remove item
+if(isset($_GET['remove'])){
+    $id = $_GET['remove'];
+    unset($_SESSION['cart'][$id]);
+    setcookie("cart", serialize($_SESSION['cart']), time()+3600);
+}
+
+// Clear cart
+if(isset($_GET['clear'])){
+    unset($_SESSION['cart']);
+    setcookie("cart","",time()-3600);
+}
+?>
+
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Simple Shopping Cart</title>
+    <style>
+        body{font-family:Arial; background:#f9f9f9; text-align:center;}
+        .container{width:400px; margin:30px auto; padding:15px; background:white; border-radius:10px; box-shadow:1px 1px 5px gray;}
+        table{width:100%; border-collapse:collapse; margin-bottom:10px;}
+        th, td{padding:8px; border:1px solid #ccc;}
+        th{background:#333; color:white;}
+        a{color:blue; text-decoration:none;}
+        a:hover{color:red;}
+        button{padding:5px 10px; margin-top:5px; cursor:pointer;}
+    </style>
+</head>
+<body>
+<div class="container">
+    <h2>Products</h2>
+    <table>
+        <tr><th>Name</th><th>Price</th><th>Action</th></tr>
+        <?php foreach($products as $id=>$p): ?>
+        <tr>
+            <td><?php echo $p['name']; ?></td>
+            <td>₹<?php echo $p['price']; ?></td>
+            <td><a href="?add=<?php echo $id; ?>">Add</a></td>
+        </tr>
+        <?php endforeach; ?>
+    </table>
+
+    <h2>Cart</h2>
+    <?php if(!empty($_SESSION['cart'])): ?>
+    <table>
+        <tr><th>Item</th><th>Price</th><th>Qty</th><th>Total</th><th>Action</th></tr>
+        <?php
+        $grandTotal=0;
+        foreach($_SESSION['cart'] as $id=>$item):
+            $total = $item['price'] * $item['qty'];
+            $grandTotal += $total;
+        ?>
+        <tr>
+            <td><?php echo $item['name']; ?></td>
+            <td>₹<?php echo $item['price']; ?></td>
+            <td><?php echo $item['qty']; ?></td>
+            <td>₹<?php echo $total; ?></td>
+            <td><a href="?remove=<?php echo $id; ?>">Remove</a></td>
+        </tr>
+        <?php endforeach; ?>
+        <tr><th colspan="3">Grand Total</th><th>₹<?php echo $grandTotal; ?></th><th></th></tr>
+    </table>
+    <a href="?clear=1"><button>Clear Cart</button></a>
+    <?php else: ?>
+        <p>Your cart is empty.</p>
+    <?php endif; ?>
+</div>
+</body>
+</html>
