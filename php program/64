@@ -1,0 +1,30 @@
+64) A retail company wants to forecast future sales based on historical data. Develop a system that utilizes
+numerical types, mathematical operators to analyze sales trends, calculate growth rates, and generate
+sales forecasts using arrays in php.
+<?php
+$sales = [1000, 1200, 1350, 1500, 1600, 1750, 1900];
+$growthRates = [];
+for ($i = 1; $i < count($sales); $i++) {
+    $growth = (($sales[$i] - $sales[$i - 1]) / $sales[$i - 1]) * 100; // %
+    $growthRates[] = $growth;
+}
+$averageGrowthRate = array_sum($growthRates) / count($growthRates);
+$forecast = [];
+$lastSale = end($sales);  // get last known sales
+for ($i = 1; $i <= 3; $i++) {
+    $lastSale = $lastSale * (1 + $averageGrowthRate / 100);
+    $forecast[] = round($lastSale, 2);
+}
+echo "<h2>Sales Forecast System</h2>";
+echo "<b>Historical Sales Data:</b> " . implode(", ", $sales) . "<br><br>";
+echo "<b>Monthly Growth Rates (%):</b> " . implode(", ", array_map(fn($v) => round($v, 2), $growthRates)) . "<br>";
+echo "<b>Average Growth Rate:</b> " . round($averageGrowthRate, 2) . "%<br><br>";
+
+echo "<b>Forecasted Sales (Next 3 Months):</b> " . implode(", ", $forecast) . "<br>";
+?>
+OUTPUT:
+Sales Forecast System
+Historical Sales Data: 1000, 1200, 1350, 1500, 1600, 1750, 1900
+Monthly Growth Rates (%): 20, 12.5, 11.11, 6.67, 9.38, 8.57
+Average Growth Rate: 11.37%
+Forecasted Sales (Next 3 Months): 2116.04, 2356.65, 2624.62
