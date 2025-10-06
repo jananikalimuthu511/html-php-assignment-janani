@@ -1,0 +1,19 @@
+97. Discover the various session functions of PHP. Explain its behavior.
+<?php
+/*
+Common Session Functions:
+
+1. session_start()   -> Starts a new session or resumes existing one.
+2. session_id()      -> Returns the current session ID.
+3. session_name()    -> Returns or sets the name of the session.
+4. session_unset()   -> Frees all session variables.
+5. session_destroy() -> Destroys all data associated with the session.
+6. session_regenerate_id() -> Generates a new session ID.
+
+Example:
+*/
+session_start();
+$_SESSION['user'] = "John";
+echo "User: " . $_SESSION['user'] . "<br>";
+echo "Session ID: " . session_id();
+?>
