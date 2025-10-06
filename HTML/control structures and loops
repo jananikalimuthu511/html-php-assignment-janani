@@ -1,0 +1,52 @@
+control structures and loops
+
+<html>
+<head>
+    <title>Inventory Management</title>
+</head>
+<body>
+
+<h1>Simple Inventory Management</h1>
+
+<?php
+// Initial stock values
+$stock = array(
+    "Veg Biryani" => 10,
+    "Chicken Biryani" => 8,
+    "Ice Cream" => 15
+);
+
+// Manual operations
+$action = "add";  // can be "add" or "remove"
+$item = "Chicken Biryani";
+$quantity = 3;
+
+// Update stock using control structures
+if (array_key_exists($item, $stock)) {
+    if ($action == "add") {
+        $stock[$item] += $quantity;
+        echo "<p>Added $quantity $item(s) to stock.</p>";
+    } elseif ($action == "remove") {
+        if ($stock[$item] >= $quantity) {
+            $stock[$item] -= $quantity;
+            echo "<p>Removed $quantity $item(s) from stock.</p>";
+        } else {
+            echo "<p>Not enough $item in stock to remove.</p>";
+        }
+    } else {
+        echo "<p>Invalid action.</p>";
+    }
+} else {
+    echo "<p>Item not found in inventory.</p>";
+}
+
+// Display updated stock
+echo "<h2>Updated Inventory</h2>";
+foreach ($stock as $key => $value) {
+    echo "<p>$key : $value items</p>";
+}
+?>
+
+</body>
+</html>
+    
