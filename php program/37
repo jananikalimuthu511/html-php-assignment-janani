@@ -1,0 +1,31 @@
+37) Explain Push and Pop in array functions.
+PUSH:
+<?php
+$fruits = array("Apple", "Banana");
+array_push($fruits, "Mango", "Orange");
+
+print_r($fruits);
+?>
+
+OUTPUT:
+Array
+(
+    [0] => Apple
+    [1] => Banana
+    [2] => Mango
+    [3] => Orange
+)
+POP:
+<?php
+$fruits = array("Apple", "Banana", "Mango");
+$lastFruit = array_pop($fruits);
+
+echo "Removed: $lastFruit<br>";
+print_r($fruits);
+?>
+OUTPUT:
+Removed: Mango<br>Array
+(
+    [0] => Apple
+    [1] => Banana
+)
