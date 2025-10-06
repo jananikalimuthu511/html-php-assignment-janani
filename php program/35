@@ -1,0 +1,15 @@
+
+35) Write a PHP script using an array that checks if a string contains another string and displays the result.
+<?php
+$mainString = "PHP is a powerful scripting language for web development.";
+$searchWords = array("PHP", "Java", "web", "python");
+foreach ($searchWords as $word) {
+    if (strpos($mainString, $word) !== false) {
+        echo "The string contains '$word'.<br>";
+    } else {
+        echo "The string does NOT contain '$word'.<br>";
+    }
+}
+?>
+OUTPUT:
+The string contains 'PHP'.<br>The string does NOT contain 'Java'.<br>The string contains 'web'.<br>The string does NOT contain 'python'.<br>
