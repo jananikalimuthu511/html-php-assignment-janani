@@ -1,0 +1,24 @@
+70) Create a PHP program to take input, a sequence of numbers from the user and store it in a list or array.
+<html>
+<head>
+    <title>Number Sequence Input</title>
+</head>
+<body>
+    <h2>Enter a sequence of numbers separated by commas</h2>
+    <form method="post">
+        <input type="text" name="numbers" placeholder="e.g. 1,2,3,4,5" required>
+        <input type="submit" name="submit" value="Submit">
+    </form>
+<?php
+    if (isset($_POST['submit'])) {
+        $input = $_POST['numbers'];
+        $numberArray = array_map('trim', explode(',', $input));
+        $numberArray = array_map('intval', $numberArray);
+        echo "<h3>Your number sequence as an array:</h3>";
+        echo "<pre>";
+        print_r($numberArray);
+        echo "</pre>";
+    }
+    ?>
+</body>
+</html>
