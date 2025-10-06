@@ -1,0 +1,15 @@
+
+50) Construct a PHP script to lower-case and upper-case, all elements in an array.
+<?php
+$words = ["Apple", "BaNaNa", "Cherry", "MANGO"];
+$lowercase = array_map('strtolower', $words);
+$uppercase = array_map('strtoupper', $words);
+echo "Original Array: " . implode(", ", $words) . "<br>";
+echo "Lower-case Array: " . implode(", ", $lowercase) . "<br>";
+echo "Upper-case Array: " . implode(", ", $uppercase);
+?>
+OUTPUT:
+Original Array: Apple, BaNaNa, Cherry, MANGO
+Lower-case Array: apple, banana, cherry, mango
+Upper-case Array: APPLE, BANANA, CHERRY, MANGO
+
