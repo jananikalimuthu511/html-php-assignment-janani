@@ -1,0 +1,16 @@
+71. Tell the different file handling modes available in PHP.
+<?php
+/*
+File handling modes in PHP:
+
+1. r  -> Open file for reading only. Starts at beginning of file.
+2. r+ -> Open for reading and writing. Starts at beginning of file.
+3. w  -> Open for writing only. Erases file content or creates new file.
+4. w+ -> Open for reading and writing. Erases file content or creates new file.
+5. a  -> Open for writing only. Places file pointer at end of file. Creates file if not exists.
+6. a+ -> Open for reading and writing. Places file pointer at end of file.
+7. x  -> Create new file for writing. Returns FALSE if file already exists.
+8. x+ -> Create new file for reading and writing. Returns FALSE if file already exists.
+*/
+echo "Different file handling modes explained in comments.";
+?>
