@@ -1,0 +1,31 @@
+54) Design a PHP program that simulates a ticket booking queue using built-in array functions.
+<?php
+$queue = [];
+array_push($queue, "Alice");
+array_push($queue, "Bob");
+array_push($queue, "Charlie");
+array_push($queue, "David");
+
+echo "Initial Queue:\n";
+print_r($queue);
+$served = array_shift($queue);
+echo "\nCustomer served: $served\n";
+
+echo "Queue after serving one customer:\n";
+print_r($queue);
+array_push($queue, "Eve");
+echo "\nAfter new customer joins:\n";
+print_r($queue);
+
+$served1 = array_shift($queue);
+$served2 = array_shift($queue);
+echo "\nCustomers served: $served1, $served2\n";
+
+echo "Final Queue:\n";
+print_r($queue);
+?>
+OUTPUT:
+Initial Queue: Array ([0] => Alice[1] => Bob[2] => Charlie[3] => David ) 
+Customer served: Alice Queue after serving one customer: Array ([0] => Bob[1] => Charlie[2] => David ) 
+After new customer joins: Array ([0] => Bob[1] => Charlie[2] => David[3] => Eve ) 
+Customers served: Bob, Charlie Final Queue: Array ([0] => David[1] => Eve ) 
