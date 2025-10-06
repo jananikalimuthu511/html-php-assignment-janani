@@ -1,0 +1,36 @@
+18. IsSet() function in PHP with example.
+
+Code:
+<?php
+$name = "Janani";
+
+if (isset($name)) {
+    echo "The variable \$name is set and its value is: " . $name;
+} else {
+    echo "The variable \$name is not set.";
+}
+?>
+
+Output:
+The variable $name is set and its value is: Janani
+
+19. Examine a PHP function that accepts an array of numbers and returns the highest and
+lowest values in that array. Display the results on the webpage.
+
+Code:
+<?php
+function findHighLow($numbers) {
+    $highest = max($numbers);
+    $lowest = min($numbers);
+
+    echo "Highest number is: " . $highest . "<br>";
+    echo "Lowest number is: " . $lowest;
+}
+
+$myNumbers = [12, 45, 7, 89, 23, 5, 67];
+
+findHighLow($myNumbers);
+?>
+
+Output:
+Highest number is: 89<br>Lowest number is: 5
