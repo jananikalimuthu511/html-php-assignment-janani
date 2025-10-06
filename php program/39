@@ -1,0 +1,49 @@
+39) A school wants to automate the calculation of student grades. Design a system that allows teachers to input
+student scores, calculates their grades, and generates a summary report. How would you utilize arrays and
+array functions to store and process the student data effectively?
+<?php
+$students = array(
+    "Alice" => 85,
+    "Bob" => 72,
+    "Charlie" => 90,
+    "David" => 65,
+    "Eva" => 50
+);
+function getGrade($score) {
+    if ($score >= 90) return "A";
+    elseif ($score >= 80) return "B";
+    elseif ($score >= 70) return "C";
+    elseif ($score >= 60) return "D";
+    else return "F";
+}
+echo "<h3>Student Grade Report</h3>";
+foreach ($students as $name => $score) {
+    $grade = getGrade($score);
+    echo "$name - Score: $score - Grade: $grade <br>";
+}
+$totalStudents = count($students);
+$totalScore = array_sum($students);
+$average = $totalScore / $totalStudents;
+$highest = max($students);
+$lowest = min($students);
+$topper = array_keys($students, $highest);
+
+echo "<h3>Summary</h3>";
+echo "Total Students: $totalStudents <br>";
+echo "Average Score: $average <br>";
+echo "Highest Score: $highest (Topper: " . implode(", ", $topper) . ")<br>";
+echo "Lowest Score: $lowest <br>";
+?>
+OUTPUT:
+Student Grade Report
+Alice - Score: 85 - Grade: B 
+Bob - Score: 72 - Grade: C 
+Charlie - Score: 90 - Grade: A 
+David - Score: 65 - Grade: D 
+Eva - Score: 50 - Grade: F 
+
+Summary
+Total Students: 5 
+Average Score: 72.4 
+Highest Score: 90 (Topper: Charlie)
+Lowest Score: 50 
